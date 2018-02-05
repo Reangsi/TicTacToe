@@ -52,6 +52,10 @@ public class TicTacToeView extends JFrame {
 		einsVSpc.add(new JButton("1 vs PC"));
 		nameEingabe.add(new TextField("Name"));
 		
+		startFrame.add("North",logo);
+		startFrame.add("Center",logo);
+		startFrame.add("West",logo);
+		startFrame.add("East",logo);
 		
 	}
 
