@@ -57,6 +57,8 @@ public class TicTacToeView extends JFrame {
 		startFrame.add("West",logo);
 		startFrame.add("East",logo);
 		
+		
+		
 	}
 
 	public TicTacToeView() {
