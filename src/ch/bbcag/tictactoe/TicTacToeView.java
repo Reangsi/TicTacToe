@@ -6,13 +6,17 @@ import java.awt.FlowLayout;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
 import java.awt.TextField;
+import java.net.URL;
 
 import javax.swing.Box;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 
 public class TicTacToeView extends JFrame {
 	
@@ -47,16 +51,15 @@ public class TicTacToeView extends JFrame {
 		JFrame startFrame = new JFrame("TicTacToe");
 		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel logo = new JPanel(new BorderLayout());
-		JPanel vs = new JPanel(new GridLayout(1,2));
+		JPanel vs = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		JPanel nameEingabe = new JPanel(new BorderLayout());
+		//logo.setPreferredSize(new Dimension(5,10));
 		
 		JButton eins = new JButton("1 vs 1");
 		JButton pc = new JButton("1 vs PC");
 		
-		int size = 50;
-		
-		eins.setSize(size,size);
-		pc.setSize(size,size);
+		eins.setPreferredSize(new Dimension(150,150));
+		pc.setPreferredSize(new Dimension(150,150));
 		
 		logo.add(new JButton(""));
 		vs.add(eins);
@@ -112,16 +115,32 @@ public class TicTacToeView extends JFrame {
 		JButton restart = new JButton("Restart");
 		JTextField hhCenter = new JTextField();
 		
-		JLabel winLose = new JLabel();
+		JLabel winLose = new JLabel(loadIcon("images.jpg"));
 		
 		hSouth.add(restart);
+		hCenter.add("Center",hhCenter);
+		hNorth.add("Center",winLose);
 		
+		hScore.add("South",hSouth);
+		hScore.add("Center",hCenter);
+		hScore.add("North",hNorth);
 		
+		hScore.setSize(400, 400);
+		hScore.setVisible(true);
 	}
 
-	public TicTacToeView() {
+	
+	private static Icon loadIcon(String iconName) {
+		final URL resource = TicTacToeView.class.getResource("/images/" + iconName);
 
-	  }
+		if (resource == null) {
+			// TODO Replace by logger
+			System.err.println(
+					"Error in " + TicTacToeView.class.getName() + ": Icon /images/" + iconName + " could not be loaded.");
+			return new ImageIcon();
+		}
+		return new ImageIcon(resource);
+	}
 
 	
 }
