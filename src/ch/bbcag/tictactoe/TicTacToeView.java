@@ -73,30 +73,35 @@ public class TicTacToeView extends JFrame {
 		xo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel x = new JPanel(new BorderLayout());
 		JPanel o = new JPanel(new BorderLayout());
+		JPanel xocenter = new JPanel(new GridLayout(2,3));
 		
-		JButton x1 = new JButton();
-		JButton x2 = new JButton();
-		JButton x3 = new JButton();
+		JButton x1 = new JButton("x");
+		JButton x2 = new JButton("x");
+		JButton x3 = new JButton("x");
 		
 		JButton o1 = new JButton();
 		JButton o2 = new JButton();
 		JButton o3 = new JButton();
 		
 		x.add("North", new JButton("x"));
-		x.add("East", x1);
-		x.add("West", x2);
-		x.add("Center", x3);
+		xocenter.add(x1);
+		xocenter.add(x2);
+		xocenter.add(x3);
 		
 		o.add("North", new JButton("o"));
-		o.add("East", o1);
-		o.add("West", o2);
-		o.add("Center", o3);
+		xocenter.add(o1);
+		xocenter.add(o2);
+		xocenter.add(o3);
 		
 		xo.add("North", x);
 		xo.add("South", o);
+		xo.add("Center", xocenter);
 		
 		xo.setSize(400, 400);
 		xo.setVisible(true);
+		
+		//Highscore
+		
 	}
 
 	public TicTacToeView() {
