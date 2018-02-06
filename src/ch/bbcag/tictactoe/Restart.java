@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class Restart implements ActionListener {
 	
@@ -17,7 +16,7 @@ public class Restart implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("restart")) {
 			//this.dispose();
-			new TicTacToeView();
+			//new TicTacToeView();
 			
 		}
 		
