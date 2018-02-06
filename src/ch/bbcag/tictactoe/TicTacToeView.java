@@ -49,6 +49,7 @@ public class TicTacToeView extends JFrame {
 		JPanel logo = new JPanel(new BorderLayout());
 		JPanel vs = new JPanel(new GridLayout(1,2));
 		JPanel nameEingabe = new JPanel(new BorderLayout());
+		//logo.setPreferredSize(new Dimension(5,10));
 		
 		JButton eins = new JButton("1 vs 1");
 		JButton pc = new JButton("1 vs PC");
@@ -115,8 +116,15 @@ public class TicTacToeView extends JFrame {
 		JLabel winLose = new JLabel();
 		
 		hSouth.add(restart);
+		hCenter.add("Center",hhCenter);
+		hNorth.add("Center",winLose);
 		
+		hScore.add("South",hSouth);
+		hScore.add("Center",hCenter);
+		hScore.add("North",hNorth);
 		
+		hScore.setSize(400, 400);
+		hScore.setVisible(true);
 	}
 
 	public TicTacToeView() {
