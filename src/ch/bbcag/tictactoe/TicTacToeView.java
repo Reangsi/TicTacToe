@@ -47,17 +47,15 @@ public class TicTacToeView extends JFrame {
 		JFrame startFrame = new JFrame("TicTacToe");
 		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel logo = new JPanel(new BorderLayout());
-		JPanel vs = new JPanel(new GridLayout(1,2));
+		JPanel vs = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		JPanel nameEingabe = new JPanel(new BorderLayout());
 		//logo.setPreferredSize(new Dimension(5,10));
 		
 		JButton eins = new JButton("1 vs 1");
 		JButton pc = new JButton("1 vs PC");
 		
-		int size = 50;
-		
-		eins.setSize(size,size);
-		pc.setSize(size,size);
+		eins.setPreferredSize(new Dimension(150,150));
+		pc.setPreferredSize(new Dimension(150,150));
 		
 		logo.add(new JButton(""));
 		vs.add(eins);
