@@ -10,7 +10,9 @@ import java.awt.TextField;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class TicTacToeView extends JFrame {
 	
@@ -100,6 +102,20 @@ public class TicTacToeView extends JFrame {
 		xo.setSize(400, 400);
 		xo.setVisible(true);
 		
+		//Highscore
+		JFrame hScore = new JFrame("TicTacToe");
+		hScore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel hSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JPanel hNorth = new JPanel(new BorderLayout());
+		JPanel hCenter = new JPanel(new BorderLayout());
+		
+		JButton restart = new JButton("Restart");
+		JTextField hhCenter = new JTextField();
+		
+		JLabel winLose = new JLabel();
+		
+		hSouth.add(restart);
+		
 		
 	}
 
@@ -107,7 +123,6 @@ public class TicTacToeView extends JFrame {
 
 	  }
 
-	//Highscore
-
+	
 }
 
