@@ -100,7 +100,6 @@ public class TicTacToeView extends JFrame {
 		xo.setSize(400, 400);
 		xo.setVisible(true);
 		
-		//Highscore
 		
 	}
 
