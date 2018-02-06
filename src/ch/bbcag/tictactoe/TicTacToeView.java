@@ -1,58 +1,70 @@
-/**
- * 
- */
 package ch.bbcag.tictactoe;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
+import java.awt.GridLayout;
+import java.awt.TextField;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-/**
- * @author zimrea
- *
- */
 public class TicTacToeView extends JFrame {
-
-	/**
-	 * @throws HeadlessException
-	 */
-	public TicTacToeView() throws HeadlessException {
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param arg0
-	 */
-	public TicTacToeView(GraphicsConfiguration arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param arg0
-	 * @throws HeadlessException
-	 */
-	public TicTacToeView(String arg0) throws HeadlessException {
-		super(arg0);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param title
-	 * @param gc
-	 */
-	public TicTacToeView(String title, GraphicsConfiguration gc) {
-		super(title, gc);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param args
-	 */
+	
+	
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		//Spielfeld
+		JFrame frame = new JFrame("TicTacToe");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JPanel centerPanel = new JPanel(new GridLayout(3,3));
+		
+		northPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		centerPanel.add(new JButton(""));
+		
+		frame.add("North",northPanel);
+		frame.add("Center",centerPanel);
+		
+		frame.setSize(400, 400);
+		frame.setVisible(true);
+		
+		//Start
+		JFrame startFrame = new JFrame("TicTacToe");
+		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel logo = new JPanel();
+		JPanel einsVSeins = new JPanel();
+		JPanel einsVSpc = new JPanel();
+		JPanel nameEingabe = new JPanel();
+		
+		logo.add(new JButton(""));
+		einsVSeins.add(new JButton("1 vs 1"));
+		einsVSpc.add(new JButton("1 vs PC"));
+		nameEingabe.add(new TextField("Name"));
+		
+		startFrame.add("North",logo);
+		startFrame.add("Center",logo);
+		startFrame.add("West",logo);
+		startFrame.add("East",logo);
+		
+		
+		
 	}
+
+	public TicTacToeView() {
+
+	  }
+
 
 }
+
