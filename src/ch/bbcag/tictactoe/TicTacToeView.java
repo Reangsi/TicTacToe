@@ -1,6 +1,7 @@
 package ch.bbcag.tictactoe;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GraphicsConfiguration;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -30,30 +32,46 @@ public class TicTacToeView extends JFrame {
 		JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JPanel centerPanel = new JPanel(new GridLayout(3,3));
 		
-		northPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
-		centerPanel.add(new JButton(""));
+		JButton  OO= new JButton();
+		JButton  OI= new JButton();
+		JButton  OZ= new JButton();
+		JButton  IO= new JButton();
+		JButton  II= new JButton();
+		JButton  IZ= new JButton();
+		JButton  ZO= new JButton();
+		JButton  ZI= new JButton();
+		JButton  ZZ= new JButton();
+		JButton  time= new JButton();
+		
+		northPanel.add(time);
+		time.setPreferredSize(new Dimension(100,20));
+		northPanel.setBackground(Color.BLACK);
+		centerPanel.setBackground(Color.BLACK);
+		
+		centerPanel.add(OO);
+		centerPanel.add(OI);
+		centerPanel.add(OZ);
+		centerPanel.add(IO);
+		centerPanel.add(II);
+		centerPanel.add(IZ);
+		centerPanel.add(ZO);
+		centerPanel.add(ZI);
+		centerPanel.add(ZZ);
+		
+		northPanel.setPreferredSize(new Dimension(100,60));
 		
 		frame.add("North",northPanel);
 		frame.add("Center",centerPanel);
 		
-		frame.setSize(400, 400);
+		frame.setSize(370, 400);
 		frame.setVisible(true);
 		
 		//Start
 		JFrame startFrame = new JFrame("TicTacToe");
 		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel logo = new JPanel(new BorderLayout());
+		JLabel logo = new JLabel(loadIcon("Unbenannt.PNG"));
 		JPanel vs = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		JPanel nameEingabe = new JPanel(new BorderLayout());
-		//logo.setPreferredSize(new Dimension(5,10));
 		
 		JButton eins = new JButton("1 vs 1");
 		JButton pc = new JButton("1 vs PC");
@@ -61,17 +79,22 @@ public class TicTacToeView extends JFrame {
 		eins.setPreferredSize(new Dimension(150,150));
 		pc.setPreferredSize(new Dimension(150,150));
 		
-		logo.add(new JButton(""));
+		vs.setBackground(Color.BLACK);
+		
 		vs.add(eins);
 		vs.add(pc);
 		nameEingabe.add(new TextField("Name"));
+		
+		nameEingabe.setPreferredSize(new Dimension(100,100));
 		
 		startFrame.add("North",logo);
 		startFrame.add("South",nameEingabe);
 		startFrame.add("Center",vs);
 		
 		startFrame.setSize(400, 400);
+		startFrame.setResizable(false);
 		startFrame.setVisible(true);
+		startFrame.getContentPane().setBackground(Color.BLACK);
 		
 		//X und O
 		JFrame xo = new JFrame("TicTacToe");
@@ -113,7 +136,11 @@ public class TicTacToeView extends JFrame {
 		JPanel hCenter = new JPanel(new BorderLayout());
 		
 		JButton restart = new JButton("Restart");
-		JTextField hhCenter = new JTextField();
+		//restart.addActionListener(new Restart());
+		JTextArea hhCenter = new JTextArea();
+		
+		hNorth.setBackground(Color.BLACK);
+		hSouth.setBackground(Color.BLACK);
 		
 		JLabel winLose = new JLabel(loadIcon("images.jpg"));
 		
@@ -127,6 +154,7 @@ public class TicTacToeView extends JFrame {
 		
 		hScore.setSize(400, 400);
 		hScore.setVisible(true);
+		hScore.getContentPane().setBackground(Color.BLACK);
 	}
 
 	
@@ -141,7 +169,8 @@ public class TicTacToeView extends JFrame {
 		}
 		return new ImageIcon(resource);
 	}
-
+	
+	
 	
 }
 
