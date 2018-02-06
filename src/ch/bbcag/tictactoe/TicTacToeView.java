@@ -6,13 +6,17 @@ import java.awt.FlowLayout;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
 import java.awt.TextField;
+import java.net.URL;
 
 import javax.swing.Box;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 
 public class TicTacToeView extends JFrame {
 	
@@ -111,7 +115,7 @@ public class TicTacToeView extends JFrame {
 		JButton restart = new JButton("Restart");
 		JTextField hhCenter = new JTextField();
 		
-		JLabel winLose = new JLabel();
+		JLabel winLose = new JLabel(loadIcon("images.jpg"));
 		
 		hSouth.add(restart);
 		hCenter.add("Center",hhCenter);
@@ -125,9 +129,18 @@ public class TicTacToeView extends JFrame {
 		hScore.setVisible(true);
 	}
 
-	public TicTacToeView() {
+	
+	private static Icon loadIcon(String iconName) {
+		final URL resource = TicTacToeView.class.getResource("/images/" + iconName);
 
-	  }
+		if (resource == null) {
+			// TODO Replace by logger
+			System.err.println(
+					"Error in " + TicTacToeView.class.getName() + ": Icon /images/" + iconName + " could not be loaded.");
+			return new ImageIcon();
+		}
+		return new ImageIcon(resource);
+	}
 
 	
 }
