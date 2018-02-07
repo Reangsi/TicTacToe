@@ -3,6 +3,7 @@ package ch.bbcag.tictactoe;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ch.bbcag.tictactoe.views.NameEinsGegenEins;
 import ch.bbcag.tictactoe.views.NameEinsGegenPc;
 import ch.bbcag.tictactoe.views.StartScreen;
 import ch.bbcag.tictactoe.views.XorO;
@@ -16,9 +17,12 @@ public class TicTacToeView extends JFrame {
 	}
 	
 	public void switchJPanel(JPanel panel) {
-		removeAll();
 		add(panel);
-		revalidate();
+		pack();
+        panel.setVisible(true);
+/*		removeAll();
+		add(panel);
+		revalidate();*/
 	}
 
 	public static void main(String[] args) {
@@ -68,7 +72,7 @@ public class TicTacToeView extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		
-		NameEinsGegenPc startScreen = new NameEinsGegenPc(frame);
+		StartScreen startScreen = new StartScreen(frame);
 		frame.add(startScreen);
 		frame.pack();
 		frame.setVisible(true);
