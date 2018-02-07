@@ -63,8 +63,8 @@ public class StartScreen extends JPanel {
 		einsGegenEinBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				EinsGegenEinPanel einGegenEinsPanel = new EinsGegenEinPanel(frame);
-				frame.switchJPanel(einGegenEinsPanel);
+				XorO xoro = new XorO(frame);
+				frame.switchJPanel(xoro);
 				System.out.println("1 gegen 1 Button pressed");
 				
 			}

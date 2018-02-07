@@ -3,7 +3,9 @@ package ch.bbcag.tictactoe;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ch.bbcag.tictactoe.views.NameEinsGegenPc;
 import ch.bbcag.tictactoe.views.StartScreen;
+import ch.bbcag.tictactoe.views.XorO;
 
 public class TicTacToeView extends JFrame {
 
@@ -64,8 +66,9 @@ public class TicTacToeView extends JFrame {
 		// Start
 		TicTacToeView frame = new TicTacToeView("TicTacToe");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(500, 500);
 		
-		StartScreen startScreen = new StartScreen(frame);
+		NameEinsGegenPc startScreen = new NameEinsGegenPc(frame);
 		frame.add(startScreen);
 		frame.pack();
 		frame.setVisible(true);
