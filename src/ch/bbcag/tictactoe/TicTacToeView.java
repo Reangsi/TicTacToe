@@ -3,10 +3,7 @@ package ch.bbcag.tictactoe;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ch.bbcag.tictactoe.views.NameEinsGegenEins;
-import ch.bbcag.tictactoe.views.NameEinsGegenPc;
-import ch.bbcag.tictactoe.views.StartScreen;
-import ch.bbcag.tictactoe.views.XorO;
+import ch.bbcag.tictactoe.view.StartScreen;
 
 public class TicTacToeView extends JFrame {
 
@@ -20,20 +17,21 @@ public class TicTacToeView extends JFrame {
 		add(panel);
 		pack();
         panel.setVisible(true);
+        panel.setSize(500,500);
 /*		removeAll();
 		add(panel);
 		revalidate();*/
 	}
 
 	public static void main(String[] args) {
-/*
+
 		// Spielfeld
 		TicTacToeView frame = new TicTacToeView("TicTacToe");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 //		JPanel centerPanel = new JPanel(new GridLayout(3, 3));
 
-		JButton OO = new JButton();
+		/*JButton OO = new JButton();
 		JButton OI = new JButton();
 		JButton OZ = new JButton();
 		JButton IO = new JButton();
@@ -42,9 +40,9 @@ public class TicTacToeView extends JFrame {
 		JButton ZO = new JButton();
 		JButton ZI = new JButton();
 		JButton ZZ = new JButton();
-		JButton time = new JButton();
+		JButton time = new JButton();*/
 
-		northPanel.add(time);
+		/*northPanel.add(time);
 		time.setPreferredSize(new Dimension(100, 20));
 		northPanel.setBackground(Color.BLACK);
 		centerPanel.setBackground(Color.BLACK);
@@ -68,7 +66,7 @@ public class TicTacToeView extends JFrame {
 		frame.setVisible(true);
 */
 		// Start
-		TicTacToeView frame = new TicTacToeView("TicTacToe");
+		//TicTacToeView frame = new TicTacToeView("TicTacToe");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		

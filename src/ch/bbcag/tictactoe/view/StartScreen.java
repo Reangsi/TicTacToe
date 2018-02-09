@@ -1,4 +1,4 @@
-package ch.bbcag.tictactoe.views;
+package ch.bbcag.tictactoe.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ch.bbcag.tictactoe.TicTacToeView;
-import ch.bbcag.tictactoe.helpers.ImageLoader;
+import ch.bbcag.tictactoe.helper.ImageLoader;
 
 public class StartScreen extends JPanel {
 
@@ -32,7 +32,7 @@ public class StartScreen extends JPanel {
 	public StartScreen(TicTacToeView frame) {
 
 		setLayout(new BorderLayout());
-		setSize(400, 400);
+		setSize(500, 500);
 		setVisible(true);
 		setBackground(Color.BLACK);
 

@@ -1,4 +1,4 @@
-package ch.bbcag.tictactoe.helpers;
+package ch.bbcag.tictactoe.helper;
 
 import java.net.URL;
 
