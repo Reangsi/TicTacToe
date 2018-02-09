@@ -47,6 +47,7 @@ public class XorO extends JPanel {
 		oCenterPanel = new JPanel(new GridLayout(1, 3, 10, 10));
 		controllPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
+		// TODO: Add Buttons to ArrayLists
 		x1 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
 		x2 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
 		x3 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
@@ -82,6 +83,7 @@ public class XorO extends JPanel {
 		add(oCenterPanel);
 		add(controllPanel);
 		
+		// TODO: Add ActionListener to Buttons in ArrayLists using a for each loop.
 		x1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

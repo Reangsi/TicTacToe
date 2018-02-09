@@ -7,9 +7,11 @@ import java.awt.GridLayout;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ch.bbcag.tictactoe.TicTacToeView;
+import ch.bbcag.tictactoe.Timer;
 
 public class GridButtons extends JPanel {
 
@@ -18,14 +20,18 @@ public class GridButtons extends JPanel {
 	private JButton[] jButton = new JButton[9];
 	private JPanel northPanel;
 	private JPanel gamePanel;
-//	private JLabel label;
-//	private JPanel panel = new JPanel();
+	private JLabel timerLabel;
 
 	public GridButtons(TicTacToeView frame, Icon iconX, Icon iconO) {
 		setLayout(new GridLayout(2, 1));
 		
 		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 20));
 		gamePanel = new JPanel(new GridLayout(3, 3));
+		
+		timerLabel = new JLabel("Duration: 00:00");
+		Timer timer = new Timer(this);
+		timer.setDaemon(true);
+		timer.start();
 		
 		for (int i = 0; i < 9; i++) {
 			jButton[i] = new JButton();
@@ -44,6 +50,8 @@ public class GridButtons extends JPanel {
 		northPanel.setBackground(Color.LIGHT_GRAY);
 		gamePanel.setBackground(Color.GRAY);
 		
+		northPanel.add(timerLabel);
+		
 		add(northPanel, BorderLayout.NORTH);
 		add(gamePanel, BorderLayout.CENTER);
 		
@@ -52,5 +60,9 @@ public class GridButtons extends JPanel {
 		 * o1; private JButton o2; private JButton o3;
 		 */
 	
+	}
+	
+	public void updateTime(String[] time) {
+		timerLabel.setText("Duration: " + time[0] + ":" + time[1]);
 	}
 }
