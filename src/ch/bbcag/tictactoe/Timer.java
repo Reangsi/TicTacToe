@@ -1,14 +1,14 @@
 package ch.bbcag.tictactoe;
 
-import ch.bbcag.tictactoe.view.GridButtons;
+import ch.bbcag.tictactoe.view.TimedLabels;
 
 public class Timer extends Thread {
 
 	private boolean isRunning = true;
 	private int timeInSec = 0;
-	private GridButtons view;
+	private TimedLabels view;
 
-	public Timer(GridButtons view) {
+	public Timer(TimedLabels view) {
 		setView(view);
 	}
 
@@ -75,11 +75,11 @@ public class Timer extends Thread {
 		return time;
 	}
 
-	private GridButtons getView() {
+	private TimedLabels getView() {
 		return view;
 	}
 
-	private void setView(GridButtons view) {
+	private void setView(TimedLabels view) {
 		this.view = view;
 	}
 }

@@ -23,14 +23,16 @@ public class XorO extends JPanel {
 	private JPanel controllPanel;
 	private JLabel xLabel;
 	private JLabel oLabel;
+	//private JLabel anleitung;
 	private JButton x1;
 	private JButton x2;
 	private JButton x3;
 	private JButton o1;
 	private JButton o2;
 	private JButton o3;
+	private JButton[] xButton = {x1,x2,x3};
+	private JButton[] oButton = {o1,o2,o3};
 	private JButton startGame;
-	
 	private JButton chosenX;
 	private JButton chosenO;
 
@@ -47,7 +49,7 @@ public class XorO extends JPanel {
 		oCenterPanel = new JPanel(new GridLayout(1, 3, 10, 10));
 		controllPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		// TODO: Add Buttons to ArrayLists
+		// TODO: Add Buttons to ArrayLists & Designs
 		x1 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
 		x2 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
 		x3 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
@@ -59,16 +61,19 @@ public class XorO extends JPanel {
 
 		xLabel = new JLabel("X");
 		oLabel = new JLabel("O");
+		//anleitung = new JLabel("Wähle ein Design für das X und 0");
 
-		xPanel.setBackground(Color.RED);
-		oPanel.setBackground(Color.BLACK);
-		xCenterPanel.setBackground(Color.GREEN);
+		xPanel.setBackground(Color.LIGHT_GRAY);
+		oPanel.setBackground(Color.LIGHT_GRAY);
+		xCenterPanel.setBackground(Color.LIGHT_GRAY);
 		oCenterPanel.setBackground(Color.LIGHT_GRAY);
 
 		xPanel.add(xLabel);
 		oPanel.add(oLabel);
+		//xPanel.add(anleitung);
 
 		controllPanel.add(startGame);
+		controllPanel.setBackground(Color.LIGHT_GRAY);
 
 		xCenterPanel.add(x1);
 		xCenterPanel.add(x2);
@@ -82,6 +87,7 @@ public class XorO extends JPanel {
 		add(oPanel);
 		add(oCenterPanel);
 		add(controllPanel);
+	
 		
 		// TODO: Add ActionListener to Buttons in ArrayLists using a for each loop.
 		x1.addActionListener(new ActionListener() {
@@ -146,6 +152,22 @@ public class XorO extends JPanel {
 			}
 		});
 
+	}
+
+	public JButton[] getoButton() {
+		return oButton;
+	}
+
+	public void setoButton(JButton[] oButton) {
+		this.oButton = oButton;
+	}
+
+	public JButton[] getxButton() {
+		return xButton;
+	}
+
+	public void setxButton(JButton[] xButton) {
+		this.xButton = xButton;
 	}
 
 }

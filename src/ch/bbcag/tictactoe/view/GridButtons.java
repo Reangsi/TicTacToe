@@ -3,6 +3,7 @@ package ch.bbcag.tictactoe.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.Icon;
@@ -13,7 +14,7 @@ import javax.swing.JPanel;
 import ch.bbcag.tictactoe.TicTacToeView;
 import ch.bbcag.tictactoe.Timer;
 
-public class GridButtons extends JPanel {
+public class GridButtons extends JPanel implements TimedLabels{
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,11 +25,15 @@ public class GridButtons extends JPanel {
 
 	public GridButtons(TicTacToeView frame, Icon iconX, Icon iconO) {
 		setLayout(new GridLayout(2, 1));
+		frame.setSize(500,500);
+		frame.setVisible(true);
+	
 		
-		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 20));
+		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 110, 110));
 		gamePanel = new JPanel(new GridLayout(3, 3));
 		
 		timerLabel = new JLabel("Duration: 00:00");
+		timerLabel.setFont(new Font("Arial", Font.BOLD, 24));
 		Timer timer = new Timer(this);
 		timer.setDaemon(true);
 		timer.start();
@@ -39,7 +44,7 @@ public class GridButtons extends JPanel {
 
 			/*
 			 * einsGegenEinBtn.addActionListener(new ActionListener() {
-			 * 
+			  
 			 * @Override public void actionPerformed(ActionEvent e) { setVisible(false);
 			 * XorO xoro = new XorO(frame); frame.switchJPanel(xoro);
 			 * System.out.println("1 gegen 1 Button pressed");
@@ -61,8 +66,8 @@ public class GridButtons extends JPanel {
 		 */
 	
 	}
-	
 	public void updateTime(String[] time) {
+	
 		timerLabel.setText("Duration: " + time[0] + ":" + time[1]);
 	}
 }

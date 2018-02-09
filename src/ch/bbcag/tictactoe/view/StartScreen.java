@@ -70,6 +70,18 @@ public class StartScreen extends JPanel {
 				
 			}
 		});
+		
+		einsGegenPc.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				XorO xoro = new XorO(frame);
+				frame.switchJPanel(xoro);
+				System.out.println("1 gegen PC Button pressed");
+				
+			}
+		});
+		
 
 		headerPanel.setBackground(Color.BLUE);
 		vsPanel.setBackground(Color.BLACK);
