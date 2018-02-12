@@ -1,7 +1,7 @@
 package ch.bbcag.tictactoe;
 
 public class GameController {
-	
+
 	private String player;
 	private String[][] spielfeld = new String[3][3];
 
