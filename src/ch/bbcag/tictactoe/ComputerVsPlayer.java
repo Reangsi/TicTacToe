@@ -132,4 +132,58 @@ public class ComputerVsPlayer {
 			}
 		}
 	}
+	
+	public void tryToWin() {
+		if ((spielfeld[0][1] == computer && spielfeld[0][2] == computer)
+				|| (spielfeld[1][0] == computer && spielfeld[2][0] == computer)
+				|| (spielfeld[1][1] == computer && spielfeld[2][2] == computer)) {
+
+			spielfeld[0][0] = computer;
+		}
+
+		if ((spielfeld[0][0] == computer && spielfeld[0][1] == computer)
+				|| (spielfeld[1][2] == computer && spielfeld[2][2] == computer)
+				|| (spielfeld[2][0] == computer && spielfeld[1][1] == computer)) {
+
+			spielfeld[0][2] = computer;
+		}
+
+		if ((spielfeld[2][1] == computer && spielfeld[2][2] == computer)
+				|| (spielfeld[0][0] == computer && spielfeld[1][0] == computer)
+				|| (spielfeld[1][1] == computer && spielfeld[0][2] == computer)) {
+
+			spielfeld[2][0] = computer;
+		}
+
+		if ((spielfeld[0][0] == computer && spielfeld[1][1] == computer)
+				|| (spielfeld[0][2] == computer && spielfeld[1][2] == computer)
+				|| (spielfeld[2][0] == computer && spielfeld[2][1] == computer)) {
+
+			spielfeld[2][2] = computer;
+		}
+
+		if ((spielfeld[0][1] == computer && spielfeld[2][1] == computer)
+				|| (spielfeld[1][0] == computer && spielfeld[1][2] == computer)
+				|| (spielfeld[0][0] == computer && spielfeld[2][2] == computer)
+				|| (spielfeld[2][0] == computer && spielfeld[0][2] == computer)) {
+
+			spielfeld[1][1] = computer;
+		}
+
+		if ((spielfeld[0][1] == computer && spielfeld[1][1] == computer)) {
+			spielfeld[2][1] = computer;
+		}
+
+		if ((spielfeld[1][1] == computer && spielfeld[2][1] == computer)) {
+			spielfeld[0][1] = computer;
+		}
+
+		if ((spielfeld[1][1] == computer && spielfeld[1][2] == computer)) {
+			spielfeld[1][0] = computer;
+		}
+
+		if ((spielfeld[1][0] == computer && spielfeld[1][1] == computer)) {
+			spielfeld[1][2] = computer;
+		}
+	}
 }
