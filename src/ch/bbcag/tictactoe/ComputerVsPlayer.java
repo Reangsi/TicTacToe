@@ -4,6 +4,7 @@ public class ComputerVsPlayer {
 	private String player;
 	private String computer;
 	private String[][] spielfeld = new String[3][3];
+	private int playerTurn;
 
 	public void checkForTwoInARow() {
 		if ((spielfeld[0][1] == player && spielfeld[0][2] == player)
@@ -80,9 +81,9 @@ public class ComputerVsPlayer {
 	public void playerSetztEcke() {
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
 				|| spielfeld[2][2] == player) {
-			if (PlayerTurn == 1) {
+			if (playerTurn == 1) {
 				spielfeld[1][1] = computer;
-			} else if (PlayerTurn == 2) {
+			} else if (playerTurn == 2) {
 				if ((spielfeld[0][0] == player && spielfeld[2][1] == player)
 						|| (spielfeld[2][1] == player && spielfeld[0][2] == player)
 						|| (spielfeld[0][0] == player && spielfeld[1][2] == player)
@@ -112,7 +113,7 @@ public class ComputerVsPlayer {
 	public void playerSetztNormal() {
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
-			if (PlayerTurn == 1) {
+			if (playerTurn == 1) {
 
 				if (spielfeld[0][1] == player) {
 					spielfeld[2][1] = computer;
