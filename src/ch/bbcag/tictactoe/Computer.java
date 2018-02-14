@@ -6,10 +6,24 @@ public class Computer {
 	private String[][] spielfeld = new String[3][3];
 	private double playerTurn;
 
+	public void computer() {
+
+		findOutPlayerTurn();
+		checkForTwoInARow();
+		tryToWin();
+		playerSetztEcke();
+		playerSetztMitte();
+		playerSetztNormal();
+	}
+
 	/**
+	 * Bei der Methode findOutPlayerTurn wird herausgefunden, welcher Spieler an der
+	 * Reihe ist und wie viele Felder dieser Spieler bzw CComputer schon besetzt
+	 * hat.
 	 * 
 	 * @return
 	 */
+
 	public double findOutPlayerTurn() {
 
 		final int NUMBER_OF_FIELDS = 9;
@@ -29,6 +43,7 @@ public class Computer {
 	}
 
 	public void checkForTwoInARow() {
+
 		if ((spielfeld[0][1] == player && spielfeld[0][2] == player)
 				|| (spielfeld[1][0] == player && spielfeld[2][0] == player)
 				|| (spielfeld[1][1] == player && spielfeld[2][2] == player)) {
@@ -90,6 +105,7 @@ public class Computer {
 	// angewendet.
 
 	public void playerSetztMitte() {
+
 		if (playerTurn == 1) {
 			if (spielfeld[1][1] == player) {
 				spielfeld[0][0] = computer;
@@ -102,6 +118,7 @@ public class Computer {
 	}
 
 	public void playerSetztEcke() {
+
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
 				|| spielfeld[2][2] == player) {
 			if (playerTurn == 1) {
@@ -134,6 +151,7 @@ public class Computer {
 	}
 
 	public void playerSetztNormal() {
+
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
 			if (playerTurn == 1) {
@@ -158,6 +176,7 @@ public class Computer {
 	}
 
 	public void tryToWin() {
+
 		if ((spielfeld[0][1] == computer && spielfeld[0][2] == computer)
 				|| (spielfeld[1][0] == computer && spielfeld[2][0] == computer)
 				|| (spielfeld[1][1] == computer && spielfeld[2][2] == computer)) {
