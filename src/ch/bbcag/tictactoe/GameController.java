@@ -1,9 +1,12 @@
 package ch.bbcag.tictactoe;
 
 public class GameController {
-
+    
+	private TicTacToeView view;
+	private GameModus gameModus;
 	private String player;
 	private String[][] spielfeld = new String[3][3];
+	private Computer computer;
 
 	public GameController() {
 		clear();
@@ -20,7 +23,9 @@ public class GameController {
 	public void setField(String player, int i, int j) {
 		spielfeld[i][j] = player;
 		checkForWin();
-	}
+		if(GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
+			//Computer Strategie aufrugen;
+	}}
 
 	public boolean checkHorizontalRow(int i) {
 		for (int j = 0; j < 2; j++) {

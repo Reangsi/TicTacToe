@@ -1,10 +1,32 @@
 package ch.bbcag.tictactoe;
 
-public class ComputerVsPlayer {
+public class Computer {
 	private String player;
 	private String computer;
 	private String[][] spielfeld = new String[3][3];
-	private int playerTurn;
+	private double playerTurn;
+
+	/**
+	 * 
+	 * @return
+	 */
+	public double findOutPlayerTurn() {
+
+		final int NUMBER_OF_FIELDS = 9;
+		final int NUMBER_OF_PLAYERS = 2;
+		int numberOfEmptyFields = 0;
+
+		for (int i = 0; i < spielfeld.length; i++) {
+			for (int j = 0; j < spielfeld.length; j++) {
+				if (spielfeld[i][j].equals("")) {
+					numberOfEmptyFields++;
+				}
+			}
+		}
+
+		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) / NUMBER_OF_PLAYERS + 0.5;
+		return playerTurn;
+	}
 
 	public void checkForTwoInARow() {
 		if ((spielfeld[0][1] == player && spielfeld[0][2] == player)
@@ -66,17 +88,18 @@ public class ComputerVsPlayer {
 	// Nach den ersten
 	// Schritten, die bestimmt sind, wird einfach die checkForTwoInRow Methode
 	// angewendet.
-	// public void playerSetztMitte() {
-	// if (PlayerTurn == 1) {
-	// if (spielfeld[1][1] == player) {
-	// spielfeld[0][0] = computer;
-	// }
-	// }
-	//
-	// else if (playerTurn == 2) { // Diese Methode wird noch gemacht
-	// spielfeld[2][0] = computer;
-	// }
-	// }
+
+	public void playerSetztMitte() {
+		if (playerTurn == 1) {
+			if (spielfeld[1][1] == player) {
+				spielfeld[0][0] = computer;
+			}
+		}
+
+		else if (playerTurn == 2) {
+			spielfeld[2][0] = computer;
+		}
+	}
 
 	public void playerSetztEcke() {
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
