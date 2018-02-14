@@ -73,7 +73,7 @@ public class ComputerVsPlayer {
 	// }
 	// }
 	//
-	// else if (PlayerTurn == 2) { // Diese Funktion wird noch gemacht
+	// else if (playerTurn == 2) { // Diese Methode wird noch gemacht
 	// spielfeld[2][0] = computer;
 	// }
 	// }
@@ -133,7 +133,7 @@ public class ComputerVsPlayer {
 			}
 		}
 	}
-	
+
 	public void tryToWin() {
 		if ((spielfeld[0][1] == computer && spielfeld[0][2] == computer)
 				|| (spielfeld[1][0] == computer && spielfeld[2][0] == computer)
