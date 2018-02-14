@@ -24,8 +24,13 @@ public class GameController {
 		spielfeld[i][j] = player;
 		checkForWin();
 		if(GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
-			//Computer Strategie aufrugen;
-	}}
+			Computer computerObject = new Computer();						//Funktioniert das????
+			computerObject.computer();
+		}
+		else {
+			//spieler modus...
+		}
+	}
 
 	public boolean checkHorizontalRow(int i) {
 		for (int j = 0; j < 2; j++) {

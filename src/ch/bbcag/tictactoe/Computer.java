@@ -18,13 +18,12 @@ public class Computer {
 
 	/**
 	 * Bei der Methode findOutPlayerTurn wird herausgefunden, welcher Spieler an der
-	 * Reihe ist und wie viele Felder dieser Spieler bzw CComputer schon besetzt
-	 * hat.
+	 * Reihe ist und wie viele Felder dieser Spieler bzw Computer schon besetzt hat.
 	 * 
 	 * @return
 	 */
 
-	public double findOutPlayerTurn() {
+	private double findOutPlayerTurn() {
 
 		final int NUMBER_OF_FIELDS = 9;
 		final int NUMBER_OF_PLAYERS = 2;
@@ -42,7 +41,7 @@ public class Computer {
 		return playerTurn;
 	}
 
-	public void checkForTwoInARow() {
+	private void checkForTwoInARow() {
 
 		if ((spielfeld[0][1] == player && spielfeld[0][2] == player)
 				|| (spielfeld[1][0] == player && spielfeld[2][0] == player)
@@ -97,14 +96,16 @@ public class Computer {
 		}
 	}
 
-	// Die ganze Logik darin besteht daraus, dass wenn der Spieler zuerst in die
-	// mitte Setzt
-	// , dass der Computer dann in eine Ecke setzt, da er sonst verlieren könnte.
-	// Nach den ersten
-	// Schritten, die bestimmt sind, wird einfach die checkForTwoInRow Methode
-	// angewendet.
+	/**
+	 * Die ganze Logik darin besteht daraus, dass wenn der Spieler zuerst in die
+	 * mitte Setzt , dass der Computer dann in eine Ecke setzt, da er sonst
+	 * verlieren könnte. Nach den ersten Schritten, die bestimmt sind, wird einfach
+	 * die checkForTwoInRow Methode angewendet.
+	 * 
+	 * @return
+	 */
 
-	public void playerSetztMitte() {
+	private void playerSetztMitte() {
 
 		if (playerTurn == 1) {
 			if (spielfeld[1][1] == player) {
@@ -117,7 +118,7 @@ public class Computer {
 		}
 	}
 
-	public void playerSetztEcke() {
+	private void playerSetztEcke() {
 
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
 				|| spielfeld[2][2] == player) {
@@ -143,14 +144,14 @@ public class Computer {
 				}
 
 				else {
-					spielfeld[2][1] = computer; // Dieses Feld sollte frei sein, sonst sollte es gar nicht zu dieser
-					// Selektion kommen.
+					spielfeld[2][1] = computer;
+
 				}
 			}
 		}
 	}
 
-	public void playerSetztNormal() {
+	private void playerSetztNormal() {
 
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
@@ -175,7 +176,7 @@ public class Computer {
 		}
 	}
 
-	public void tryToWin() {
+	private void tryToWin() {
 
 		if ((spielfeld[0][1] == computer && spielfeld[0][2] == computer)
 				|| (spielfeld[1][0] == computer && spielfeld[2][0] == computer)
