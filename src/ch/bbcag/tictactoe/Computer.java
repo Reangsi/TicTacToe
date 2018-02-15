@@ -152,7 +152,6 @@ public class Computer {
 	}
 
 	private void playerSetztNormal() {
-
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
 			if (playerTurn == 1) {
