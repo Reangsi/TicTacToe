@@ -5,15 +5,35 @@ public class Computer {
 	private String computer;
 	private String[][] spielfeld = new String[3][3];
 	private double playerTurn;
+	int[] posComputer = null;
 
-	public void computer() {
+	public int[] computer() {
+		int[] posComputer = null;
 
 		findOutPlayerTurn();
-		checkForTwoInARow();
-		tryToWin();
-		playerSetztEcke();
-		playerSetztMitte();
-		playerSetztNormal();
+
+		posComputer = checkForTwoInARow();
+
+		if (posComputer == null) {
+
+			posComputer = tryToWin();
+
+			if (posComputer == null) {
+
+				posComputer = playerSetztEcke();
+
+				if (posComputer == null) {
+
+					posComputer = playerSetztMitte();
+
+					if (posComputer == null) {
+
+						posComputer = playerSetztNormal();
+					}
+				}
+			}
+		}
+		return posComputer;
 	}
 
 	/**
@@ -41,13 +61,14 @@ public class Computer {
 		return playerTurn;
 	}
 
-	private void checkForTwoInARow() {
+	private int[] checkForTwoInARow() {
 
 		if ((spielfeld[0][1] == player && spielfeld[0][2] == player)
 				|| (spielfeld[1][0] == player && spielfeld[2][0] == player)
 				|| (spielfeld[1][1] == player && spielfeld[2][2] == player)) {
 
 			spielfeld[0][0] = computer;
+			posComputer = new int[] { 0, 0 };
 		}
 
 		if ((spielfeld[0][0] == player && spielfeld[0][1] == player)
@@ -55,6 +76,7 @@ public class Computer {
 				|| (spielfeld[2][0] == player && spielfeld[1][1] == player)) {
 
 			spielfeld[0][2] = computer;
+			posComputer = new int[] { 0, 2 };
 		}
 
 		if ((spielfeld[2][1] == player && spielfeld[2][2] == player)
@@ -62,6 +84,7 @@ public class Computer {
 				|| (spielfeld[1][1] == player && spielfeld[0][2] == player)) {
 
 			spielfeld[2][0] = computer;
+			posComputer = new int[] { 2, 0 };
 		}
 
 		if ((spielfeld[0][0] == player && spielfeld[1][1] == player)
@@ -69,6 +92,7 @@ public class Computer {
 				|| (spielfeld[2][0] == player && spielfeld[2][1] == player)) {
 
 			spielfeld[2][2] = computer;
+			posComputer = new int[] { 2, 2 };
 		}
 
 		if ((spielfeld[0][1] == player && spielfeld[2][1] == player)
@@ -77,23 +101,29 @@ public class Computer {
 				|| (spielfeld[2][0] == player && spielfeld[0][2] == player)) {
 
 			spielfeld[1][1] = computer;
+			posComputer = new int[] { 1, 1 };
 		}
 
 		if ((spielfeld[0][1] == player && spielfeld[1][1] == player)) {
 			spielfeld[2][1] = computer;
+			posComputer = new int[] { 2, 1 };
 		}
 
 		if ((spielfeld[1][1] == player && spielfeld[2][1] == player)) {
 			spielfeld[0][1] = computer;
+			posComputer = new int[] { 0, 1 };
 		}
 
 		if ((spielfeld[1][1] == player && spielfeld[1][2] == player)) {
 			spielfeld[1][0] = computer;
+			posComputer = new int[] { 1, 0 };
 		}
 
 		if ((spielfeld[1][0] == player && spielfeld[1][1] == player)) {
 			spielfeld[1][2] = computer;
+			posComputer = new int[] { 1, 2 };
 		}
+		return posComputer;
 	}
 
 	/**
@@ -105,25 +135,29 @@ public class Computer {
 	 * @return
 	 */
 
-	private void playerSetztMitte() {
+	private int[] playerSetztMitte() {
 
 		if (playerTurn == 1) {
 			if (spielfeld[1][1] == player) {
 				spielfeld[0][0] = computer;
+				posComputer = new int[] { 0, 0 };
 			}
 		}
 
 		else if (playerTurn == 2) {
 			spielfeld[2][0] = computer;
+			posComputer = new int[] { 2, 0 };
 		}
+		return posComputer;
 	}
 
-	private void playerSetztEcke() {
+	private int[] playerSetztEcke() {
 
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
 				|| spielfeld[2][2] == player) {
 			if (playerTurn == 1) {
 				spielfeld[1][1] = computer;
+				posComputer = new int[] { 1, 1 };
 			} else if (playerTurn == 2) {
 				if ((spielfeld[0][0] == player && spielfeld[2][1] == player)
 						|| (spielfeld[2][1] == player && spielfeld[0][2] == player)
@@ -136,52 +170,61 @@ public class Computer {
 
 					if (spielfeld[2][0] == player) {
 						spielfeld[2][2] = computer;
+						posComputer = new int[] { 2, 2 };
 					}
 
 					else {
 						spielfeld[2][0] = computer;
+						posComputer = new int[] { 2, 0 };
 					}
 				}
 
 				else {
 					spielfeld[2][1] = computer;
-
+					posComputer = new int[] { 2, 1 };
 				}
 			}
 		}
+		return posComputer;
 	}
 
-	private void playerSetztNormal() {
+	private int[] playerSetztNormal() {
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
 			if (playerTurn == 1) {
 
 				if (spielfeld[0][1] == player) {
 					spielfeld[2][1] = computer;
+					posComputer = new int[] { 2, 1 };
 				}
 
 				if (spielfeld[1][0] == player) {
 					spielfeld[1][2] = computer;
+					posComputer = new int[] { 1, 2 };
 				}
 
 				if (spielfeld[2][1] == player) {
 					spielfeld[0][1] = computer;
+					posComputer = new int[] { 0, 1 };
 				}
 
 				if (spielfeld[1][2] == player) {
 					spielfeld[1][0] = computer;
+					posComputer = new int[] { 1, 0 };
 				}
 			}
 		}
+		return posComputer;
 	}
 
-	private void tryToWin() {
+	private int[] tryToWin() {
 
 		if ((spielfeld[0][1] == computer && spielfeld[0][2] == computer)
 				|| (spielfeld[1][0] == computer && spielfeld[2][0] == computer)
 				|| (spielfeld[1][1] == computer && spielfeld[2][2] == computer)) {
 
 			spielfeld[0][0] = computer;
+			posComputer = new int[] { 0, 0 };
 		}
 
 		if ((spielfeld[0][0] == computer && spielfeld[0][1] == computer)
@@ -189,6 +232,7 @@ public class Computer {
 				|| (spielfeld[2][0] == computer && spielfeld[1][1] == computer)) {
 
 			spielfeld[0][2] = computer;
+			posComputer = new int[] { 0, 2 };
 		}
 
 		if ((spielfeld[2][1] == computer && spielfeld[2][2] == computer)
@@ -196,6 +240,7 @@ public class Computer {
 				|| (spielfeld[1][1] == computer && spielfeld[0][2] == computer)) {
 
 			spielfeld[2][0] = computer;
+			posComputer = new int[] { 2, 0 };
 		}
 
 		if ((spielfeld[0][0] == computer && spielfeld[1][1] == computer)
@@ -203,6 +248,7 @@ public class Computer {
 				|| (spielfeld[2][0] == computer && spielfeld[2][1] == computer)) {
 
 			spielfeld[2][2] = computer;
+			posComputer = new int[] { 2, 2 };
 		}
 
 		if ((spielfeld[0][1] == computer && spielfeld[2][1] == computer)
@@ -211,22 +257,28 @@ public class Computer {
 				|| (spielfeld[2][0] == computer && spielfeld[0][2] == computer)) {
 
 			spielfeld[1][1] = computer;
+			posComputer = new int[] { 1, 1 };
 		}
 
 		if ((spielfeld[0][1] == computer && spielfeld[1][1] == computer)) {
 			spielfeld[2][1] = computer;
+			posComputer = new int[] { 2, 1 };
 		}
 
 		if ((spielfeld[1][1] == computer && spielfeld[2][1] == computer)) {
 			spielfeld[0][1] = computer;
+			posComputer = new int[] { 0, 1 };
 		}
 
 		if ((spielfeld[1][1] == computer && spielfeld[1][2] == computer)) {
 			spielfeld[1][0] = computer;
+			posComputer = new int[] { 1, 0 };
 		}
 
 		if ((spielfeld[1][0] == computer && spielfeld[1][1] == computer)) {
 			spielfeld[1][2] = computer;
+			posComputer = new int[] { 1, 2 };
 		}
+		return posComputer;
 	}
 }

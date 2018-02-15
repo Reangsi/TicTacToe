@@ -1,15 +1,24 @@
 package ch.bbcag.tictactoe;
 
 public class GameController {
-    
+
 	private TicTacToeView view;
 	private GameModus gameModus;
 	private String player;
 	private String[][] spielfeld = new String[3][3];
 	private Computer computer;
 
-	public GameController() {
+	public GameController(TicTacToeView view) {
+		setView(view);
 		clear();
+	}
+
+	private TicTacToeView getView() {
+		return view;
+	}
+
+	private void setView(TicTacToeView view) {
+		this.view = view;
 	}
 
 	public void clear() {
@@ -23,12 +32,15 @@ public class GameController {
 	public void setField(String player, int i, int j) {
 		spielfeld[i][j] = player;
 		checkForWin();
-		if(GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
-			Computer computerObject = new Computer();						//Funktioniert das????
-			computerObject.computer();
-		}
-		else {
-			//spieler modus...
+
+		if (GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
+			Computer computerObject = new Computer();
+			int[] posComputer = computerObject.computer();
+			// TODO zeichen sollte hier schon gewechselt sein!!!
+			// TODO informiere View, dass Computer die Position posComputer gesetzt hat
+			checkForWin();
+		} else {
+			// spieler modus.....
 		}
 	}
 
