@@ -128,9 +128,9 @@ public class Computer {
 
 	/**
 	 * Die ganze Logik darin besteht daraus, dass wenn der Spieler zuerst in die
-	 * mitte Setzt , dass der Computer dann in eine Ecke setzt, da er sonst
-	 * verlieren könnte. Nach den ersten Schritten, die bestimmt sind, wird einfach
-	 * die checkForTwoInRow Methode angewendet.
+	 * Mitte Setzt , dass der Computer dann in eine Ecke setzt, da er sonst
+	 * verlieren könnte. Nach den ersten Schritten, die bestimmt sind, sollte einfach
+	 * die checkForTwoInRow Methode angewendet werden.
 	 * 
 	 * @return
 	 */

@@ -81,7 +81,7 @@ public class TicTacToeView extends JFrame {
 		xo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel x = new JPanel(new BorderLayout());
 		JPanel o = new JPanel(new BorderLayout());
-		JPanel xocenter = new JPanel(new GridLayout(2, 3));
+		JPanel xocenter = new JPanel(new GridLayout(2,k 3));
 
 		JButton x1 = new JButton("x");
 		JButton x2 = new JButton("x");
