@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ch.bbcag.tictactoe.model.Spieler;
+import ch.bbcag.tictactoe.model.Ergebnis;
 
-public class SpielerJdbcDao implements SpielerDao {
+public class ErgebnisJdbcDao implements ErgebnisDao {
 
 	@Override
-	public int insertSpieler(Spieler spieler) {
-		String sql = "insert into tictactoe.spieler (name) values(?)";
+	public int insertErgebnis(Ergebnis ergebnis) {
+		String sql = "insert into tictactoe.ergebnis (ergebnis) values(?)";
 		Connection con = ConnectionFactory.getInstance().getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -19,7 +19,7 @@ public class SpielerJdbcDao implements SpielerDao {
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, spieler.getName());
+			ps.setString(1, ergebnis.getErgebnis());
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 
@@ -27,7 +27,7 @@ public class SpielerJdbcDao implements SpielerDao {
 				newPK = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException("Spieler " + spieler.getName() + " konnte nicht gespeichert werden.", e);
+			throw new RuntimeException("Ergebnis konnte nicht gespeichert werden.", e);
 		} finally {
 			try {
 				if (ps != null) {
@@ -45,7 +45,8 @@ public class SpielerJdbcDao implements SpielerDao {
 	}
 
 	@Override
-	public Spieler findSpielerById(int id) {
+	public Ergebnis findErgebnisById(int id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -40,7 +40,7 @@ public class GameController {
 			// TODO informiere View, dass Computer die Position posComputer gesetzt hat
 			checkForWin();
 		} else {
-			// TODO Spieler vs Spieler soll startbereit sein(falls es noch nihct so ist)
+			// TODO Spieler vs Spieler soll startbereit sein(falls es noch nicht so ist)
 		}
 	}
 
