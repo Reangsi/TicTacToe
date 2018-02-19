@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ch.bbcag.tictactoe.TicTacToeView;
@@ -23,15 +24,16 @@ public class XorO extends JPanel {
 	private JPanel controllPanel;
 	private JLabel xLabel;
 	private JLabel oLabel;
-	//private JLabel anleitung;
+	private JLabel errorLabel;
+	// private JLabel anleitung;
 	private JButton x1;
 	private JButton x2;
 	private JButton x3;
 	private JButton o1;
 	private JButton o2;
 	private JButton o3;
-	private JButton[] xButton = {x1,x2,x3};
-	private JButton[] oButton = {o1,o2,o3};
+	private JButton[] xButton = { x1, x2, x3 };
+	private JButton[] oButton = { o1, o2, o3 };
 	private JButton startGame;
 	private JButton chosenX;
 	private JButton chosenO;
@@ -61,7 +63,7 @@ public class XorO extends JPanel {
 
 		xLabel = new JLabel("X");
 		oLabel = new JLabel("O");
-		//anleitung = new JLabel("Wähle ein Design für das X und 0");
+		// anleitung = new JLabel("Wähle ein Design für das X und 0");
 
 		xPanel.setBackground(Color.LIGHT_GRAY);
 		oPanel.setBackground(Color.LIGHT_GRAY);
@@ -70,8 +72,10 @@ public class XorO extends JPanel {
 
 		xPanel.add(xLabel);
 		oPanel.add(oLabel);
-		//xPanel.add(anleitung);
+		// xPanel.add(anleitung);
+		errorLabel = new JLabel("Bitte ein Design wählen");
 
+		controllPanel.add(errorLabel);
 		controllPanel.add(startGame);
 		controllPanel.setBackground(Color.LIGHT_GRAY);
 
@@ -82,66 +86,101 @@ public class XorO extends JPanel {
 		oCenterPanel.add(o2);
 		oCenterPanel.add(o3);
 
+		add(controllPanel);
 		add(xPanel);
 		add(xCenterPanel);
 		add(oPanel);
 		add(oCenterPanel);
-		add(controllPanel);
-	
-		
+
 		// TODO: Add ActionListener to Buttons in ArrayLists using a for each loop.
 		x1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chosenX = x1;
-				System.out.println("X gewählt");
+				if (chosenX == null) {
+					x1.setBackground(Color.BLUE);
+					chosenX = x1;
+					System.out.println("X gewählt");
+				} else {
+					System.out.println("Du hast schon gewählt");
+					displayIconErrorMessage(frame);
+				}
 			}
 		});
-		
+
 		x2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chosenX = x2;
-				System.out.println("X gewählt");
+				if (chosenX == null) {
+					x2.setBackground(Color.BLUE);
+					chosenX = x2;
+					System.out.println("X gewählt");
+				} else {
+					System.out.println("Du hast schon gewählt");
+					displayIconErrorMessage(frame);
+				}
 			}
 		});
-		
+
 		x3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chosenX = x3;
-				System.out.println("X gewählt");
+				if (chosenX == null) {
+					x3.setBackground(Color.BLUE);
+					chosenX = x3;
+					System.out.println("X gewählt");
+				} else {
+					System.out.println("Du hast schon gewählt");
+					displayIconErrorMessage(frame);
+				}
 			}
 		});
-		
+
 		o1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chosenO = o1;
-				System.out.println("O gewählt");
+				if (chosenO == null) {
+					o1.setBackground(Color.BLUE);
+					chosenO = o1;
+					System.out.println("O gewählt");
+				} else {
+					System.out.println("Du hast schon gewählt");
+					displayIconErrorMessage(frame);
+				}
 			}
 		});
-		
+
 		o2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chosenO = o2;
-				System.out.println("O gewählt");
+				if (chosenO == null) {
+					o2.setBackground(Color.BLUE);
+					chosenO = o2;
+					System.out.println("O gewählt");
+				} else {
+					System.out.println("Du hast schon gewählt");
+					displayIconErrorMessage(frame);
+				}
 			}
 		});
-		
+
 		o3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chosenO = o3;
-				System.out.println("O gewählt");
+				if (chosenO == null) {
+					o3.setBackground(Color.BLUE);
+					chosenO = o3;
+					System.out.println("O gewählt");
+				} else {
+					System.out.println("Du hast schon gewählt");
+					displayIconErrorMessage(frame);
+				}
 			}
 		});
 
 		startGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (chosenX != null && chosenO != null) {
+				if (chosenO != null && chosenO != null) {
 					setVisible(false);
 					GridButtons grid = new GridButtons(frame, chosenX.getIcon(), chosenO.getIcon());
 					frame.switchJPanel(grid);
@@ -152,6 +191,11 @@ public class XorO extends JPanel {
 			}
 		});
 
+	}
+
+	private void displayIconErrorMessage(TicTacToeView parentPanel) {
+		JOptionPane.showMessageDialog(parentPanel, "Es kann nur 1 Bild pro Spieler gewählt werden!", "Error",
+				JOptionPane.WARNING_MESSAGE);
 	}
 
 	public JButton[] getoButton() {
