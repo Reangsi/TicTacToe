@@ -2,9 +2,14 @@ package ch.bbcag.tictactoe.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -14,11 +19,13 @@ import javax.swing.JPanel;
 import ch.bbcag.tictactoe.TicTacToeView;
 import ch.bbcag.tictactoe.Timer;
 
-public class GridButtons extends JPanel implements TimedLabels{
+public class GridButtons extends JPanel implements TimedLabels {
 
 	private static final long serialVersionUID = 1L;
 
-	private JButton[] jButton = new JButton[9];
+	private List<JButton> buttonList = new ArrayList<JButton>(9);
+	
+
 	private JPanel northPanel;
 	private JPanel gamePanel;
 	private JLabel timerLabel;
@@ -38,11 +45,32 @@ public class GridButtons extends JPanel implements TimedLabels{
 		timer.setDaemon(true);
 		timer.start();
 		
-		for (int i = 0; i < 9; i++) {
-			jButton[i] = new JButton();
-			gamePanel.add(jButton[i]);
+		
+		
+		for(int i = 0; i < 3; i++) {
+			for (int j = 0; j <3; j++) {
+				JButton b = new JButton();
+				b.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						/* if(player == X)
+						 *   setIcon
+						 *   setEnabled(false)
+						 *   setField von GameController
+						 */
+						
+					}
+				});
+				gamePanel.add(b);
+				buttonList.add(b);
+				
+				
+				b.doClick();
+			}
 			
-			
+		
+		gamePanel.add(jButton1);
 			/*
 			 * einsGegenEinBtn.addActionListener(new ActionListener() {
 			  
@@ -67,8 +95,9 @@ public class GridButtons extends JPanel implements TimedLabels{
 		 */
 	
 	}
+
 	public void updateTime(String[] time) {
-	
+
 		timerLabel.setText("Duration: " + time[0] + ":" + time[1]);
 	}
 }
