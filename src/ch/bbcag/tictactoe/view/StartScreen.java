@@ -64,8 +64,8 @@ public class StartScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				XorO xoro = new XorO(frame);
-				frame.switchJPanel(xoro);
+				NameEinsGegenEins eins = new NameEinsGegenEins(frame);
+				frame.switchJPanel(eins);
 				System.out.println("1 gegen 1 Button pressed");
 				
 			}
@@ -75,8 +75,8 @@ public class StartScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				XorO xoro = new XorO(frame);
-				frame.switchJPanel(xoro);
+				NameEinsGegenPc pc = new NameEinsGegenPc(frame);
+				frame.switchJPanel(pc);
 				System.out.println("1 gegen PC Button pressed");
 				
 			}

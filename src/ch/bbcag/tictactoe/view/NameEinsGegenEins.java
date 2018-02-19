@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -50,6 +52,17 @@ public class NameEinsGegenEins extends JPanel {
 		add(name1Label);
 		add(name1);
 		add(okey);
+		
+		okey.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				XorO xoro = new XorO(frame);
+				frame.switchJPanel(xoro);
+				System.out.println("Ok Button pressed");
+				
+			}
+		});
 		
 	}
 
