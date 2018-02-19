@@ -41,7 +41,8 @@ public class GridButtons extends JPanel implements TimedLabels{
 		for (int i = 0; i < 9; i++) {
 			jButton[i] = new JButton();
 			gamePanel.add(jButton[i]);
-
+			
+			
 			/*
 			 * einsGegenEinBtn.addActionListener(new ActionListener() {
 			  
