@@ -1,6 +1,12 @@
 package ch.bbcag.tictactoe.view;
 
+import ch.bbcag.tictactoe.TicTacToeView;
+
 public class HistoryView extends WINorLOSE {
+
+	public HistoryView(TicTacToeView frame) {
+		super(frame);
+	}
 
 	private static final long serialVersionUID = 1L;
 	
