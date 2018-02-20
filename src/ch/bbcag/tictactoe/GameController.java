@@ -36,7 +36,9 @@ public class GameController {
 		if (GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
 			Computer computerObject = new Computer();
 			int[] posComputer = computerObject.computer();
+			
 			// TODO zeichen sollte hier schon gewechselt sein!!!
+			
 			// TODO informiere View, dass Computer die Position posComputer gesetzt hat
 			checkForWin();
 		} else {

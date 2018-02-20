@@ -63,7 +63,7 @@ public class GridButtons extends JPanel implements TimedLabels {
 					public void actionPerformed(ActionEvent e) {
 						
 						if (findOutPlayerTurn() == 2) {
-							//x bild this.button hinzufügen
+							
 							//this.button enabled
 							getCordinatesForButton(i, j);
 							
