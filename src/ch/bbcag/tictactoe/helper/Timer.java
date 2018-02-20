@@ -1,4 +1,4 @@
-package ch.bbcag.tictactoe;
+package ch.bbcag.tictactoe.helper;
 
 import ch.bbcag.tictactoe.view.TimedLabels;
 

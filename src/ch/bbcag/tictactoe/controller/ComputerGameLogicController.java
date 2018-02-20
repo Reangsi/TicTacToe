@@ -1,13 +1,21 @@
-package ch.bbcag.tictactoe;
+package ch.bbcag.tictactoe.controller;
 
-public class Computer {
+public class ComputerGameLogicController {
 	private String player;
 	private String computer;
 	private String[][] spielfeld = new String[3][3];
 	private double playerTurn;
 	int[] posComputer = null;
 
-	public int[] computer() {
+	public ComputerGameLogicController() {
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 3; y++) {
+				spielfeld[x][y] = new String();
+			}
+		}
+	}
+
+	public int[] computerPlayMove() {
 		int[] posComputer = null;
 
 		findOutPlayerTurn();
@@ -129,8 +137,8 @@ public class Computer {
 	/**
 	 * Die ganze Logik darin besteht daraus, dass wenn der Spieler zuerst in die
 	 * Mitte Setzt , dass der Computer dann in eine Ecke setzt, da er sonst
-	 * verlieren könnte. Nach den ersten Schritten, die bestimmt sind, sollte einfach
-	 * die checkForTwoInRow Methode angewendet werden.
+	 * verlieren könnte. Nach den ersten Schritten, die bestimmt sind, sollte
+	 * einfach die checkForTwoInRow Methode angewendet werden.
 	 * 
 	 * @return
 	 */

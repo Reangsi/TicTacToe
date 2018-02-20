@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ch.bbcag.tictactoe.GameController;
 import ch.bbcag.tictactoe.TicTacToeView;
+import ch.bbcag.tictactoe.controller.GameController;
 
 public class NameEinsGegenPc extends JPanel {
 
 	private static final long serialVersionUID = 3333784181523217083L;
-	private final GameController GAME_CONTROLLER = new GameController();
+	private final GameController GAME_CONTROLLER = GameController.getGameController();
 	
 	private JLabel nameLabel;
 	private JTextField name;
@@ -50,7 +50,7 @@ public class NameEinsGegenPc extends JPanel {
 		okey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!name.getText().equals(null)) {
+				if (!name.getText().trim().isEmpty()) {
 					setVisible(false);
 					GAME_CONTROLLER.setPlayer(name.getText());
 					XorO xoro = new XorO(frame);
@@ -66,10 +66,11 @@ public class NameEinsGegenPc extends JPanel {
 		
 		
 	}
+
 	private void nameErrorMessage(TicTacToeView parentPanel) {
-			JOptionPane.showMessageDialog(parentPanel, "Du musst etwas reinschreiben!", "Error",
-					JOptionPane.WARNING_MESSAGE);
-		}
+		JOptionPane.showMessageDialog(parentPanel, "Du musst etwas reinschreiben!", "Error",
+				JOptionPane.WARNING_MESSAGE);
+	}
 
 
 }

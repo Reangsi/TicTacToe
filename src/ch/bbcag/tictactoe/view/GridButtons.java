@@ -1,9 +1,7 @@
 package ch.bbcag.tictactoe.view;
 
 import java.awt.BorderLayout;
-import ch.bbcag.tictactoe.helper.ImageLoader;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,22 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import ch.bbcag.tictactoe.Computer;
-import ch.bbcag.tictactoe.GameController;
 import ch.bbcag.tictactoe.TicTacToeView;
-import ch.bbcag.tictactoe.Timer;
-import ch.bbcag.tictactoe.helper.ImageLoader;
+import ch.bbcag.tictactoe.controller.GameController;
+import ch.bbcag.tictactoe.helper.Timer;
 
 public class GridButtons extends JPanel implements TimedLabels {
 
 	private static final long serialVersionUID = 1L;
 
-	private final GameController GAME_CONTROLLER = new GameController(this);
+	private final GameController GAME_CONTROLLER = GameController.getGameController();
 
 	private List<JButton> buttonList = new ArrayList<JButton>(9);
 
@@ -65,15 +61,22 @@ public class GridButtons extends JPanel implements TimedLabels {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String[] buttonCoordinates = b.getName().split(";");
-					GAME_CONTROLLER.setField(GAME_CONTROLLER.getPlayer(), new Integer(buttonCoordinates[0]) , new Integer(buttonCoordinates[1]));
-					
+					String currentMove = GAME_CONTROLLER.setField(new Integer(buttonCoordinates[0]) , new Integer(buttonCoordinates[1]));
+					if(currentMove == null) {
+						nameErrorMessage(frame);
+					} else if (currentMove.equals("spieler")) {
+						b.setIcon(iconX);
+						GAME_CONTROLLER.doComputerMove();
+					} else if(currentMove.equals("computer")) {
+						b.setIcon(iconO);
+					}
 					
 				}
 				});
 				gamePanel.add(b);
 				buttonList.add(b);
 
-				b.doClick();
+				//b.doClick();
 			}
 
 		}
@@ -93,8 +96,13 @@ public class GridButtons extends JPanel implements TimedLabels {
 
 	}
 	
+	private void nameErrorMessage(TicTacToeView parentPanel) {
+		JOptionPane.showMessageDialog(parentPanel, "Du bist nicht am Zug!", "Error",
+				JOptionPane.WARNING_MESSAGE);
+	}
+
 	public void setButtonIcon(int posX, int posY) {
-		//TODO: Set Icon of button to player OR computer.
+		// TODO: Set Icon of button to player OR computer.
 	}
 
 	public void updateTime(String[] time) {

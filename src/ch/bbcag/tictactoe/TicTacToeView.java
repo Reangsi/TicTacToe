@@ -1,11 +1,9 @@
 package ch.bbcag.tictactoe;
 
-import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ch.bbcag.tictactoe.view.StartScreen;
-import ch.bbcag.tictactoe.view.WINorLOSE;
 
 public class TicTacToeView extends JFrame {
 
