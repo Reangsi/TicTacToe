@@ -1,21 +1,28 @@
 package ch.bbcag.tictactoe.view;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import ch.bbcag.tictactoe.TicTacToeView;
-
-public class HistoryView extends JPanel {
+public class HistoryView extends WINorLOSE {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField nameTextField = new JTextField("Name: ");
-	private JTextField name2TextField = new JTextField("Name: ");
+	
+	/*private JTextField spieler1TextField = new JTextField();
+	private JTextField spieler2TextField = new JTextField();
 
-	public HistoryView(TicTacToeView frame) {
-		add(nameTextField, BorderLayout.NORTH);
-		add(name2TextField, BorderLayout.CENTER);
+	public JTextField getSpieler1TextField() {
+		return spieler1TextField;
 	}
 
-}
+	public void setSpieler2TextField(JTextField nameTextField) {
+		this.spieler1TextField = nameTextField;
+	}
+
+	public JTextField getSpieler2Textfield() {
+		return spieler2TextField;
+	}
+
+	public void setSpieler2Textfield(JTextField spieler2Textfield) {
+		this.spieler2TextField = spieler2Textfield;
+	}*/
+
+} 
+
+// Muss vielleicht in "WINorLOSE" View implementiert werden, da dort die Game History angezeigt werden soll.

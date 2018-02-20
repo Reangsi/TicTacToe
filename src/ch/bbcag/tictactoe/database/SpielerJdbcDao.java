@@ -30,7 +30,7 @@ public class SpielerJdbcDao implements SpielerDao {
 			throw new RuntimeException("Spieler " + spieler.getName() + " konnte nicht gespeichert werden.", e);
 		} finally {
 			try {
-				if (ps != null) {
+				if (ps != null)  {
 					ps.close();
 				}
 

@@ -22,10 +22,7 @@ public class StartScreen extends JPanel {
 
 	private JPanel headerPanel;
 	private JPanel vsPanel;
-	private JPanel namePanel;
 	private JLabel logoLabel;
-	private JLabel nameLabel;
-	private JTextField name;
 	private JButton einsGegenEinBtn;
 	private JButton einsGegenPc;
 
@@ -38,15 +35,8 @@ public class StartScreen extends JPanel {
 
 		headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		vsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
-		namePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30));
 
 		logoLabel = new JLabel(ImageLoader.loadIcon("Unbenannt.PNG"));
-
-		nameLabel = new JLabel("Name:");
-		nameLabel.setFont(new Font("Arial", Font.BOLD, 24));
-
-		name = new JTextField();
-		name.setPreferredSize(new Dimension(200, 30));
 
 		einsGegenEinBtn = new JButton("1 vs 1");
 		einsGegenPc = new JButton("1 vs PC");
@@ -57,15 +47,14 @@ public class StartScreen extends JPanel {
 		headerPanel.add(logoLabel);
 		vsPanel.add(einsGegenEinBtn);
 		vsPanel.add(einsGegenPc);
-		namePanel.add(nameLabel);
-		namePanel.add(name);
+
 
 		einsGegenEinBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				XorO xoro = new XorO(frame);
-				frame.switchJPanel(xoro);
+				NameEinsGegenEins eins = new NameEinsGegenEins(frame);
+				frame.switchJPanel(eins);
 				System.out.println("1 gegen 1 Button pressed");
 				
 			}
@@ -75,8 +64,8 @@ public class StartScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				XorO xoro = new XorO(frame);
-				frame.switchJPanel(xoro);
+				NameEinsGegenPc pc = new NameEinsGegenPc(frame);
+				frame.switchJPanel(pc);
 				System.out.println("1 gegen PC Button pressed");
 				
 			}
@@ -85,11 +74,9 @@ public class StartScreen extends JPanel {
 
 		headerPanel.setBackground(Color.BLUE);
 		vsPanel.setBackground(Color.BLACK);
-		namePanel.setBackground(Color.RED);
 
 		add(headerPanel, BorderLayout.NORTH);
 		add(vsPanel, BorderLayout.CENTER);
-		add(namePanel, BorderLayout.SOUTH);
 
 	}
 

@@ -50,12 +50,12 @@ public class XorO extends JPanel {
 		controllPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
 		// TODO: Add Buttons to ArrayLists & Designs
-		x1 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
-		x2 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
-		x3 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
-		o1 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
-		o2 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
-		o3 = new JButton(ImageLoader.loadIcon("Unbenannt.PNG"));
+		x1 = new JButton(ImageLoader.loadIcon("adidas.PNG"));
+		x2 = new JButton(ImageLoader.loadIcon("cingcang.PNG"));
+		x3 = new JButton(ImageLoader.loadIcon("x.PNG"));
+		o1 = new JButton(ImageLoader.loadIcon("nike.PNG"));
+		o2 = new JButton(ImageLoader.loadIcon("yingyang.PNG"));
+		o3 = new JButton(ImageLoader.loadIcon("x.PNG"));
 
 		startGame = new JButton("Start Game");
 
