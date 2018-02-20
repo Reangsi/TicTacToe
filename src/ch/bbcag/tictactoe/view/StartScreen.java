@@ -36,7 +36,7 @@ public class StartScreen extends JPanel {
 		headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		vsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 
-		logoLabel = new JLabel(ImageLoader.loadIcon("Unbenannt.PNG"));
+		logoLabel = new JLabel(ImageLoader.loadIcon("TicTacToe.PNG"));
 
 		einsGegenEinBtn = new JButton("1 vs 1");
 		einsGegenPc = new JButton("1 vs PC");
@@ -72,7 +72,7 @@ public class StartScreen extends JPanel {
 		});
 		
 
-		headerPanel.setBackground(Color.BLUE);
+		headerPanel.setBackground(Color.white);
 		vsPanel.setBackground(Color.BLACK);
 
 		add(headerPanel, BorderLayout.NORTH);

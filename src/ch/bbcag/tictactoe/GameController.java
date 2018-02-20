@@ -7,7 +7,7 @@ public class GameController {
 	private GridButtons view;
 	private GameModus gameModus;
 	private String player;
-	private String currentPlayer;
+	private String currentPlayer = "player";
 	private String[][] spielfeld = new String[3][3];
 	private Computer computer;
 	

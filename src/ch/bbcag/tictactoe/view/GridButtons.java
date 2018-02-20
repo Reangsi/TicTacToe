@@ -66,7 +66,7 @@ public class GridButtons extends JPanel implements TimedLabels {
 				public void actionPerformed(ActionEvent e) {
 					String[] buttonCoordinates = b.getName().split(";");
 					GAME_CONTROLLER.setField(GAME_CONTROLLER.getPlayer(), new Integer(buttonCoordinates[0]) , new Integer(buttonCoordinates[1]));
-					b.setIcon(new ImageIcon(""+iconX));
+					
 					
 				}
 				});
