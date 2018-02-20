@@ -10,7 +10,6 @@ import ch.bbcag.tictactoe.view.WINorLOSE;
 public class TicTacToeView extends JFrame {
 
 	private static final long serialVersionUID = 7784372619859095392L;
-	private final GameController GAME_CONTROLLER = new GameController(this);
 
 	public TicTacToeView(String titel) {
 		setTitle(titel);

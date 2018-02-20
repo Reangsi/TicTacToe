@@ -57,12 +57,12 @@ public class XorO extends JPanel {
 		x3 = new JButton(ImageLoader.loadIcon("x.PNG"));
 		o1 = new JButton(ImageLoader.loadIcon("nike.PNG"));
 		o2 = new JButton(ImageLoader.loadIcon("yingyang.PNG"));
-		o3 = new JButton(ImageLoader.loadIcon("x.PNG"));
+		o3 = new JButton(ImageLoader.loadIcon("o.PNG"));
 
 		startGame = new JButton("Start Game");
 
-		xLabel = new JLabel("X");
-		oLabel = new JLabel("O");
+		xLabel = new JLabel("X (Spieler)");
+		oLabel = new JLabel("O (Computer)");
 		// anleitung = new JLabel("Wähle ein Design für das X und 0");
 
 		xPanel.setBackground(Color.LIGHT_GRAY);
@@ -70,6 +70,8 @@ public class XorO extends JPanel {
 		xCenterPanel.setBackground(Color.LIGHT_GRAY);
 		oCenterPanel.setBackground(Color.LIGHT_GRAY);
 
+		
+		
 		xPanel.add(xLabel);
 		oPanel.add(oLabel);
 		// xPanel.add(anleitung);
