@@ -5,16 +5,18 @@ import java.awt.Color;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WINorLOSE extends JFrame {
-	/**
-	 * 
-	 */
+import ch.bbcag.tictactoe.TicTacToeView;
+
+public class WINorLOSE extends JPanel {
+
 	private static final long serialVersionUID = 1L;
 	private static JPanel headPanel;
 	private static JPanel history;
@@ -23,19 +25,11 @@ public class WINorLOSE extends JFrame {
 	private JPanel winPanel;
 	private JPanel southPanel;
 
-	public static void main(String[] args) {
-		WINorLOSE frame = new WINorLOSE();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public WINorLOSE (TicTacToeView frame) {
+		
 		frame.setSize(500, 500);
 		frame.setVisible(true);
 		frame.setBackground(Color.BLACK);
-
-	}
-
-	public WINorLOSE() {
-		
-		setTitle("TicTacToe");
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		//Panels
 		headPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30));
@@ -74,47 +68,25 @@ public class WINorLOSE extends JFrame {
 		winPanel.add(winLabel);
 		southPanel.add(restart);
 		restart = new JButton("Restart");
-
+		
+		restart.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				StartScreen start = new StartScreen(frame);
+				frame.switchJPanel(start);
+				System.out.println("Ok Button pressed");
+				
+			}
+		});
 	}
 
-	public JPanel getHeadPanel() {
-		return headPanel;
+	private void setWinPanel(JPanel jPanel) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void setHeadPanel(JPanel headPanel) {
-		WINorLOSE.headPanel = headPanel;
-	}
-
-	public JPanel getHistory() {
-		return history;
-	}
-
-	public void setHistory(JPanel history) {
-		WINorLOSE.history = history;
-	}
-
-	public JButton getRestart() {
-		return restart;
-	}
-
-	public void setRestart(JButton restart) {
-		WINorLOSE.restart = restart;
-	}
-
-	public JPanel getWinPanel() {
-		return winPanel;
-	}
-
-	public void setWinPanel(JPanel winPanel) {
-		this.winPanel = winPanel;
-	}
-
-	public JPanel getSouthPanel() {
-		return southPanel;
-	}
-
-	public void setSouthPanel(JPanel southPanel) {
-		this.southPanel = southPanel;
-	}
 
 }
+
+

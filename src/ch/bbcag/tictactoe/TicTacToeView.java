@@ -1,14 +1,15 @@
 package ch.bbcag.tictactoe;
 
+import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ch.bbcag.tictactoe.view.StartScreen;
+import ch.bbcag.tictactoe.view.WINorLOSE;
 
 public class TicTacToeView extends JFrame {
 
 	private static final long serialVersionUID = 7784372619859095392L;
-	private final GameController GAME_CONTROLLER = new GameController(this);
 
 	public TicTacToeView(String titel) {
 		setTitle(titel);
@@ -23,7 +24,7 @@ public class TicTacToeView extends JFrame {
 		add(panel);
 		revalidate();*/
 	}
-
+	
 	public static void main(String[] args) {
 
 		// Spielfeld
@@ -71,8 +72,8 @@ public class TicTacToeView extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		
-		StartScreen startScreen = new StartScreen(frame);
-		frame.add(startScreen);
+		StartScreen wol = new StartScreen(frame);
+		frame.add(wol);
 		frame.pack();
 		frame.setVisible(true);
 /*
