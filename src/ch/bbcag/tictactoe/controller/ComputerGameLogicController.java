@@ -69,7 +69,7 @@ public class ComputerGameLogicController {
 			}
 		}
 
-		playerTurn = (int) ((NUMBER_OF_FIELDS - numberOfEmptyFields) / NUMBER_OF_PLAYERS + 0.5);
+		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) % NUMBER_OF_PLAYERS;
 	}
 
 	private int[] checkForTwoInARow() {
@@ -148,14 +148,14 @@ public class ComputerGameLogicController {
 
 	private int[] playerSetztMitte() {
 
-		if (playerTurn == 1) {
+		if (playerTurn == 0) {
 			if (spielfeld[1][1] == player) {
 				spielfeld[0][0] = computer;
 				posComputer = new int[] { 0, 0 };
 			}
 		}
 
-		else if (playerTurn == 2) {
+		else if (playerTurn == 1) {
 			spielfeld[2][0] = computer;
 			posComputer = new int[] { 2, 0 };
 		}
@@ -166,10 +166,10 @@ public class ComputerGameLogicController {
 
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
 				|| spielfeld[2][2] == player) {
-			if (playerTurn == 1) {
+			if (playerTurn == 0) {
 				spielfeld[1][1] = computer;
 				posComputer = new int[] { 1, 1 };
-			} else if (playerTurn == 2) {
+			} else if (playerTurn == 1) {
 				if ((spielfeld[0][0] == player && spielfeld[2][1] == player)
 						|| (spielfeld[2][1] == player && spielfeld[0][2] == player)
 						|| (spielfeld[0][0] == player && spielfeld[1][2] == player)
@@ -202,7 +202,7 @@ public class ComputerGameLogicController {
 	private int[] playerSetztNormal() {
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
-			if (playerTurn == 1) {
+			if (playerTurn == 0) {
 
 				if (spielfeld[0][1] == player) {
 					spielfeld[2][1] = computer;
