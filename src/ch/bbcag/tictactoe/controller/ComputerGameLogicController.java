@@ -309,6 +309,10 @@ public class ComputerGameLogicController {
 		this.player = player;
 	}
 	
+	public void setPlayer1(String player) {
+		this.player = player;
+	}
+	
 	public String getPlayer() {
 		return this.player;
 	}
@@ -348,7 +352,7 @@ public class ComputerGameLogicController {
 	}
 
 	public void checkForWin() {
-
+		
 		checkHorizontalRow(0);
 		checkHorizontalRow(1);
 		checkHorizontalRow(2);

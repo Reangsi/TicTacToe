@@ -9,14 +9,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ch.bbcag.tictactoe.TicTacToeView;
+import ch.bbcag.tictactoe.controller.GameController;
 
 public class NameEinsGegenEins extends JPanel {
 
 	private static final long serialVersionUID = -5232492020539837896L;
+	private final GameController GAME_CONTROLLER = GameController.getGameController();
 	
 	private JLabel nameLabel;
 	private JLabel name1Label;
@@ -56,14 +59,24 @@ public class NameEinsGegenEins extends JPanel {
 		okey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				XorO xoro = new XorO(frame);
-				frame.switchJPanel(xoro);
-				System.out.println("Ok Button pressed");
+				if (!name.getText().trim().isEmpty() && !name1.getText().trim().isEmpty()) {
+					setVisible(false);
+					GAME_CONTROLLER.setPlayer(name.getText());
+					XorO xoro = new XorO(frame);
+					frame.switchJPanel(xoro);
+					System.out.println("Ok Button pressed");
+				} else {
+					nameErrorMessage(frame);
+					//TODO: Diplay Warning!
+				}
 				
 			}
 		});
 		
+	}
+	private void nameErrorMessage(TicTacToeView parentPanel) {
+		JOptionPane.showMessageDialog(parentPanel, "Du musst etwas reinschreiben!", "Error",
+				JOptionPane.WARNING_MESSAGE);
 	}
 
 }
