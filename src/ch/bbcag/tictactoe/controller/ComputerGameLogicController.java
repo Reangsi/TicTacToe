@@ -4,7 +4,7 @@ public class ComputerGameLogicController {
 	private String player;
 	private String computer;
 	private String[][] spielfeld = new String[3][3];
-	private double playerTurn;
+	private int playerTurn;
 	int[] posComputer = null;
 
 	public ComputerGameLogicController() {
@@ -29,7 +29,8 @@ public class ComputerGameLogicController {
 			if (posComputer == null) {
 
 				posComputer = playerSetztEcke();
-
+				System.out.println(posComputer);
+				System.out.println(spielfeld[0][2]);
 				if (posComputer == null) {
 
 					posComputer = playerSetztMitte();
@@ -37,6 +38,9 @@ public class ComputerGameLogicController {
 					if (posComputer == null) {
 
 						posComputer = playerSetztNormal();
+						if (posComputer == null) {
+							System.err.println("Gibt nichts zurück!");
+						}
 					}
 				}
 			}
@@ -51,8 +55,8 @@ public class ComputerGameLogicController {
 	 * @return
 	 */
 
-	private double findOutPlayerTurn() {
-
+	private void findOutPlayerTurn() {
+		//TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
 		final int NUMBER_OF_FIELDS = 9;
 		final int NUMBER_OF_PLAYERS = 2;
 		int numberOfEmptyFields = 0;
@@ -65,8 +69,7 @@ public class ComputerGameLogicController {
 			}
 		}
 
-		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) / NUMBER_OF_PLAYERS + 0.5;
-		return playerTurn;
+		playerTurn = (int) ((NUMBER_OF_FIELDS - numberOfEmptyFields) / NUMBER_OF_PLAYERS + 0.5);
 	}
 
 	private int[] checkForTwoInARow() {
@@ -289,4 +292,85 @@ public class ComputerGameLogicController {
 		}
 		return posComputer;
 	}
+
+	public void setPlayer(String player) {
+		this.player = player;
+	}
+	
+	public String getPlayer() {
+		return this.player;
+	}
+	
+	public boolean checkHorizontalRow(int i) {
+		for (int j = 0; j < 2; j++) {
+			if (spielfeld[i][j] == player) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkVertikalRow(int j) {
+		for (int i = 0; i < 2; i++) {
+			if (spielfeld[i][j] == player) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkDiagonalFromLeftToRightRow() {
+		for (int i = 0; i < 2; i++) {
+			if (spielfeld[i][i] == player) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkDiagonalFromRightToLeftRow() {
+		if (spielfeld[2][0] == player && spielfeld[1][1] == player && spielfeld[0][2] == player) {
+			return true;
+		}
+		return false;
+	}
+
+	public void checkForWin() {
+
+		checkHorizontalRow(0);
+		checkHorizontalRow(1);
+		checkHorizontalRow(2);
+
+		checkVertikalRow(0);
+		checkVertikalRow(1);
+		checkVertikalRow(2);
+
+		checkDiagonalFromRightToLeftRow();
+		checkDiagonalFromLeftToRightRow();
+	}
+	public void clear() {
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				spielfeld[i][j] = "";
+			}
+		}
+	}
+
+	public double getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerMove(int i, int j) {
+		System.out.println("_>>"+ spielfeld[0][2]);
+		System.out.println("Spielername im GameLogicController: " + getPlayer());
+		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "]: " + spielfeld[i][j]);
+		if (spielfeld[i][j].isEmpty()) {
+			spielfeld[i][j] = this.getPlayer();
+		}
+		
+	}
+	
+	
 }
+
+

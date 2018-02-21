@@ -7,9 +7,7 @@ public class GameController {
 	private static final GameController GAME_CONTROLLER = new GameController();
 
 	private GameModus gameModus;
-	private String player = new String();
-	private String currentPlayer = new String();
-	private String[][] spielfeld = new String[3][3];
+
 	private ComputerGameLogicController computerObject = new ComputerGameLogicController();
 
 	private GameController() {
@@ -20,12 +18,11 @@ public class GameController {
 	}
 
 	public String getPlayer() {
-		return player;
+		return this.computerObject.getPlayer();
 	}
 
 	public void setPlayer(String player) {
-		this.player = player;
-		this.currentPlayer = player;
+		this.computerObject.setPlayer(player);
 	}
 
 	public GameModus getGameModus() {
@@ -36,21 +33,15 @@ public class GameController {
 		this.gameModus = gameModus;
 	}
 
-	public void clear() {
-		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < 2; j++) {
-				spielfeld[i][j] = "";
-			}
-		}
-	}
+
 
 	public String setField(int i, int j) {
 		// int x;
 		// int y;
-
-		if (currentPlayer.equals(player)) {
+		System.out.println(computerObject.getPlayerTurn());
+		if (computerObject.getPlayerTurn() == 1 || computerObject.getPlayerTurn() == 0) {
 			if (GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
-				spielfeld[i][j] = player;
+
 				// int[] posComputer = computerObject.computerPlayMove();
 
 				// TODO zeichen sollte hier schon gewechselt sein!!! Auf Variable "view"
@@ -59,8 +50,8 @@ public class GameController {
 				// y = posComputer[1];
 				// getCordinatesForButton(x,y);
 				// TODO informiere View, dass Computer die Position posComputer gesetzt hat
-				checkForWin();
-				currentPlayer = "computer";
+				computerObject.setPlayerMove(i, j);
+				computerObject.checkForWin();
 				return "spieler";
 			} else {
 				// TODO Spieler vs Spieler soll startbereit sein(falls es noch nihct so ist)
@@ -73,104 +64,19 @@ public class GameController {
 
 	}
 
-	public boolean checkHorizontalRow(int i) {
-		for (int j = 0; j < 2; j++) {
-			if (spielfeld[i][j] == player) {
-				return true;
-			}
-		}
-		return false;
-	}
 
-	public boolean checkVertikalRow(int j) {
-		for (int i = 0; i < 2; i++) {
-			if (spielfeld[i][j] == player) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean checkDiagonalFromLeftToRightRow() {
-		for (int i = 0; i < 2; i++) {
-			if (spielfeld[i][i] == player) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean checkDiagonalFromRightToLeftRow() {
-		if (spielfeld[2][0] == player && spielfeld[1][1] == player && spielfeld[0][2] == player) {
-			return true;
-		}
-		return false;
-	}
-
-	public void checkForWin() {
-
-		checkHorizontalRow(0);
-		checkHorizontalRow(1);
-		checkHorizontalRow(2);
-
-		checkVertikalRow(0);
-		checkVertikalRow(1);
-		checkVertikalRow(2);
-
-		checkDiagonalFromRightToLeftRow();
-		checkDiagonalFromLeftToRightRow();
-	}
-
-	public int getCordinatesForButton(int i, int j) {
-		String x = Integer.toString(i);
-		String y = Integer.toString(i);
-		String cords = x + y;
-		int xy = Integer.valueOf(cords);
-		switch (xy) {
-		case 0:
-			xy = 1;
-			break;
-		case 1:
-			xy = 2;
-			break;
-		case 2:
-			xy = 3;
-			break;
-		case 10:
-			xy = 4;
-			break;
-		case 11:
-			xy = 5;
-			break;
-		case 12:
-			xy = 6;
-			break;
-		case 20:
-			xy = 7;
-			break;
-		case 21:
-			xy = 8;
-			break;
-		case 22:
-			xy = 9;
-			break;
-
-		}
-		return xy;
-	}
 
 	public void doComputerMove() {
 		//TODO: Fix NullPointerEx.
 		int[] posComputer = computerObject.computerPlayMove();
+		
 		System.out.println("Pos Values of Computer:");
 		if (posComputer != null) {
 			System.out.println("posComputer Length: " + posComputer.length);
 			for (int i : posComputer) {
 				System.out.println(i);
 			}
-			spielfeld[posComputer[0]][posComputer[1]] = "computer";
 		}
-		currentPlayer = player;
 	}
 
 	// public int getCordinatesForLogic(int i) {
