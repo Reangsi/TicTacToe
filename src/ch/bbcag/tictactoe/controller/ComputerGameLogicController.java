@@ -141,6 +141,11 @@ public class ComputerGameLogicController {
 			posComputer = new int[] { 0, 1 };
 		}
 		
+		if ((spielfeld[0][0] == player && spielfeld[1][1] == player)) {
+			spielfeld[2][2] = computer;
+			posComputer = new int[] { 2, 2 };
+		}
+		
 		return posComputer;
 	}
 
