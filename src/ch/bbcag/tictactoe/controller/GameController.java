@@ -8,6 +8,12 @@ public class GameController {
 
 	private GameModus gameModus;
 
+	private String xy;
+
+	public String getXy() {
+		return xy;
+	}
+
 	private ComputerGameLogicController computerObject = new ComputerGameLogicController();
 
 	private GameController() {
@@ -33,13 +39,12 @@ public class GameController {
 		this.gameModus = gameModus;
 	}
 
-
-
 	public String setField(int i, int j) {
 		// int x;
 		// int y;
-		System.out.println(computerObject.getPlayerTurn());
-		if (computerObject.getPlayerTurn() == 1 || computerObject.getPlayerTurn() == 0) {
+		System.out.println("Aktueller Playerturn: " + computerObject.isPlayerTurn());
+		//TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran ist.
+		if (computerObject.isPlayerTurn()) {
 			if (GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
 
 				// int[] posComputer = computerObject.computerPlayMove();
@@ -54,9 +59,10 @@ public class GameController {
 				computerObject.checkForWin();
 				return "spieler";
 			} else {
-				// TODO Spieler vs Spieler soll startbereit sein(falls es noch nihct so ist)
+				// TODO Spieler vs Spieler soll startbereit sein(falls es noch nicht so ist)
 				return null;
 			}
+		//TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran ist.
 		} else {
 			System.err.println("Du bist nicht am Zug!");
 			return null;
@@ -64,19 +70,9 @@ public class GameController {
 
 	}
 
-
-
-	public void doComputerMove() {
-		//TODO: Fix NullPointerEx.
-		int[] posComputer = computerObject.computerPlayMove();
-		
-		System.out.println("Pos Values of Computer:");
-		if (posComputer != null) {
-			System.out.println("posComputer Length: " + posComputer.length);
-			for (int i : posComputer) {
-				System.out.println(i);
-			}
-		}
+	public int[] doComputerMove() {
+		// TODO: Fix NullPointerEx.
+		return computerObject.computerPlayMove();
 	}
 
 	// public int getCordinatesForLogic(int i) {

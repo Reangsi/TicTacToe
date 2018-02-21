@@ -28,9 +28,6 @@ public class GridButtons extends JPanel implements TimedLabels {
 
 	private List<JButton> buttonList = new ArrayList<JButton>(9);
 
-	private Icon iconX;
-	private Icon iconO;
-
 	private JPanel northPanel;
 	private JPanel gamePanel;
 	private JLabel timerLabel;
@@ -39,9 +36,6 @@ public class GridButtons extends JPanel implements TimedLabels {
 		setLayout(new GridLayout(2, 1));
 		frame.setSize(500, 500);
 		frame.setVisible(true);
-
-		this.iconX = iconX;
-		this.iconO = iconO;
 
 		northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 110, 110));
 		gamePanel = new JPanel(new GridLayout(3, 3));
@@ -62,14 +56,31 @@ public class GridButtons extends JPanel implements TimedLabels {
 				public void actionPerformed(ActionEvent e) {
 					String[] buttonCoordinates = b.getName().split(";");
 					String currentMove = GAME_CONTROLLER.setField(new Integer(buttonCoordinates[0]) , new Integer(buttonCoordinates[1]));
+					int[] computerMove = new int[0];
+					String computerMoveButton = new String();
 					if(currentMove == null) {
 						nameErrorMessage(frame);
 					} else if (currentMove.equals("spieler")) {
 						b.setIcon(iconX);
-						GAME_CONTROLLER.doComputerMove();
-					} else if(currentMove.equals("computer")) {
-						b.setIcon(iconO);
+						//b.setEnabled(false);
+						computerMove = GAME_CONTROLLER.doComputerMove();
 					}
+					if (computerMove.length == 2) {
+						computerMoveButton = Integer.valueOf(computerMove[0]) + ";" + Integer.valueOf(computerMove[1]);
+					}
+					for (JButton button : buttonList) {
+						if (button.getName().equals(computerMoveButton)) {
+							button.setIcon(iconO);
+							//button.setEnabled(false);
+							button.revalidate();
+							break;
+						}
+					}
+//					if (b.getName().equals(GAME_CONTROLLER.getXy()) == true) {
+//					} else {
+//						System.err.println("Findet button nicht!");
+//					}
+						
 					
 				}
 				});

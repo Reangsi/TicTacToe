@@ -2,9 +2,9 @@ package ch.bbcag.tictactoe.controller;
 
 public class ComputerGameLogicController {
 	private String player;
-	private String computer;
+	private String computer = "computer";
 	private String[][] spielfeld = new String[3][3];
-	private int playerTurn;
+	private boolean isPlayerTurn = true;
 	int[] posComputer = null;
 
 	public ComputerGameLogicController() {
@@ -18,7 +18,7 @@ public class ComputerGameLogicController {
 	public int[] computerPlayMove() {
 		int[] posComputer = null;
 
-		findOutPlayerTurn();
+		switchPlayerTurn();
 
 		posComputer = checkForTwoInARow();
 
@@ -29,8 +29,7 @@ public class ComputerGameLogicController {
 			if (posComputer == null) {
 
 				posComputer = playerSetztEcke();
-				System.out.println(posComputer);
-				System.out.println(spielfeld[0][2]);
+				//System.out.println(posComputer);
 				if (posComputer == null) {
 
 					posComputer = playerSetztMitte();
@@ -55,21 +54,23 @@ public class ComputerGameLogicController {
 	 * @return
 	 */
 
-	private void findOutPlayerTurn() {
-		//TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
-		final int NUMBER_OF_FIELDS = 9;
-		final int NUMBER_OF_PLAYERS = 2;
-		int numberOfEmptyFields = 0;
-
-		for (int i = 0; i < spielfeld.length; i++) {
-			for (int j = 0; j < spielfeld.length; j++) {
-				if (spielfeld[i][j].equals("")) {
-					numberOfEmptyFields++;
-				}
-			}
-		}
-
-		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) % NUMBER_OF_PLAYERS;
+	private void switchPlayerTurn() {
+//		//TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
+//		final int NUMBER_OF_FIELDS = 9;
+//		final int NUMBER_OF_PLAYERS = 2;
+//		int numberOfEmptyFields = 0;
+//
+//		for (int i = 0; i < spielfeld.length; i++) {
+//			for (int j = 0; j < spielfeld.length; j++) {
+//				if (spielfeld[i][j].equals("")) {
+//					numberOfEmptyFields++;
+//				}
+//			}
+//		}
+//
+//		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) % NUMBER_OF_PLAYERS;
+		isPlayerTurn = !isPlayerTurn;
+		
 	}
 
 	private int[] checkForTwoInARow() {
@@ -134,6 +135,12 @@ public class ComputerGameLogicController {
 			spielfeld[1][2] = computer;
 			posComputer = new int[] { 1, 2 };
 		}
+		
+		if ((spielfeld[0][0] == player && spielfeld[0][2] == player)) {
+			spielfeld[0][1] = computer;
+			posComputer = new int[] { 0, 1 };
+		}
+		
 		return posComputer;
 	}
 
@@ -148,14 +155,14 @@ public class ComputerGameLogicController {
 
 	private int[] playerSetztMitte() {
 
-		if (playerTurn == 0) {
+		if (!isPlayerTurn) {
 			if (spielfeld[1][1] == player) {
 				spielfeld[0][0] = computer;
 				posComputer = new int[] { 0, 0 };
 			}
 		}
 
-		else if (playerTurn == 1) {
+		else if (isPlayerTurn) {
 			spielfeld[2][0] = computer;
 			posComputer = new int[] { 2, 0 };
 		}
@@ -166,10 +173,10 @@ public class ComputerGameLogicController {
 
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
 				|| spielfeld[2][2] == player) {
-			if (playerTurn == 0) {
+			if (!isPlayerTurn) {
 				spielfeld[1][1] = computer;
 				posComputer = new int[] { 1, 1 };
-			} else if (playerTurn == 1) {
+			} else if (isPlayerTurn) {
 				if ((spielfeld[0][0] == player && spielfeld[2][1] == player)
 						|| (spielfeld[2][1] == player && spielfeld[0][2] == player)
 						|| (spielfeld[0][0] == player && spielfeld[1][2] == player)
@@ -202,7 +209,7 @@ public class ComputerGameLogicController {
 	private int[] playerSetztNormal() {
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
-			if (playerTurn == 0) {
+			if (!isPlayerTurn) {
 
 				if (spielfeld[0][1] == player) {
 					spielfeld[2][1] = computer;
@@ -356,18 +363,17 @@ public class ComputerGameLogicController {
 		}
 	}
 
-	public double getPlayerTurn() {
-		return playerTurn;
+	public boolean isPlayerTurn() {
+		return isPlayerTurn;
 	}
 
 	public void setPlayerMove(int i, int j) {
-		System.out.println("_>>"+ spielfeld[0][2]);
-		System.out.println("Spielername im GameLogicController: " + getPlayer());
-		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "]: " + spielfeld[i][j]);
+		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer();
+			switchPlayerTurn();
+			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
 		}
-		
 	}
 	
 	
