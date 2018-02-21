@@ -29,7 +29,7 @@ public class ComputerGameLogicController {
 			if (posComputer == null) {
 
 				posComputer = playerSetztEcke();
-				//System.out.println(posComputer);
+				// System.out.println(posComputer);
 				if (posComputer == null) {
 
 					posComputer = playerSetztMitte();
@@ -55,22 +55,22 @@ public class ComputerGameLogicController {
 	 */
 
 	private void switchPlayerTurn() {
-//		//TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
-//		final int NUMBER_OF_FIELDS = 9;
-//		final int NUMBER_OF_PLAYERS = 2;
-//		int numberOfEmptyFields = 0;
-//
-//		for (int i = 0; i < spielfeld.length; i++) {
-//			for (int j = 0; j < spielfeld.length; j++) {
-//				if (spielfeld[i][j].equals("")) {
-//					numberOfEmptyFields++;
-//				}
-//			}
-//		}
-//
-//		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) % NUMBER_OF_PLAYERS;
+		// //TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
+		// final int NUMBER_OF_FIELDS = 9;
+		// final int NUMBER_OF_PLAYERS = 2;
+		// int numberOfEmptyFields = 0;
+		//
+		// for (int i = 0; i < spielfeld.length; i++) {
+		// for (int j = 0; j < spielfeld.length; j++) {
+		// if (spielfeld[i][j].equals("")) {
+		// numberOfEmptyFields++;
+		// }
+		// }
+		// }
+		//
+		// playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) % NUMBER_OF_PLAYERS;
 		isPlayerTurn = !isPlayerTurn;
-		
+
 	}
 
 	private int[] checkForTwoInARow() {
@@ -135,17 +135,17 @@ public class ComputerGameLogicController {
 			spielfeld[1][2] = computer;
 			posComputer = new int[] { 1, 2 };
 		}
-		
+
 		if ((spielfeld[0][0] == player && spielfeld[0][2] == player)) {
 			spielfeld[0][1] = computer;
 			posComputer = new int[] { 0, 1 };
 		}
-		
+
 		if ((spielfeld[0][0] == player && spielfeld[1][1] == player)) {
 			spielfeld[2][2] = computer;
 			posComputer = new int[] { 2, 2 };
 		}
-		
+
 		return posComputer;
 	}
 
@@ -308,15 +308,15 @@ public class ComputerGameLogicController {
 	public void setPlayer(String player) {
 		this.player = player;
 	}
-	
+
 	public void setPlayer1(String player) {
 		this.player = player;
 	}
-	
+
 	public String getPlayer() {
 		return this.player;
 	}
-	
+
 	public boolean checkHorizontalRow(int i) {
 		for (int j = 0; j < 2; j++) {
 			if (spielfeld[i][j] == player) {
@@ -351,8 +351,8 @@ public class ComputerGameLogicController {
 		return false;
 	}
 
-	public void checkForWin() {
-		
+	public boolean checkForWin() {
+
 		checkHorizontalRow(0);
 		checkHorizontalRow(1);
 		checkHorizontalRow(2);
@@ -363,7 +363,9 @@ public class ComputerGameLogicController {
 
 		checkDiagonalFromRightToLeftRow();
 		checkDiagonalFromLeftToRightRow();
+		return true;
 	}
+
 	public void clear() {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
@@ -384,8 +386,5 @@ public class ComputerGameLogicController {
 			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
 		}
 	}
-	
-	
+
 }
-
-

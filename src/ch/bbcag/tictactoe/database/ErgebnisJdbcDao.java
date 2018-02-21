@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import ch.bbcag.tictactoe.model.Ergebnis;
 
@@ -18,7 +19,7 @@ public class ErgebnisJdbcDao implements ErgebnisDao {
 		int newPK = 0;
 
 		try {
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, ergebnis.getErgebnis());
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();

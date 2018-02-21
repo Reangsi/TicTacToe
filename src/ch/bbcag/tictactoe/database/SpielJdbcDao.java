@@ -10,8 +10,7 @@ import ch.bbcag.tictactoe.model.Spiel;
 public class SpielJdbcDao implements SpielDao {
 
 	private SpielerDao spielerDao = new SpielerJdbcDao();
-	private ErgebnisDao ergebnisDao;
-	private SpielDao spielDao = new SpielJdbcDao();
+	private ErgebnisDao ergebnisDao = new ErgebnisJdbcDao();
 
 	@Override
 	public void insertSpiel(Spiel spiel) {
@@ -61,13 +60,5 @@ public class SpielJdbcDao implements SpielDao {
 	@Override
 	public List<Spiel> findAllSpiele() {
 		return null;
-	}
-
-	public SpielDao getSpielDao() {
-		return spielDao;
-	}
-
-	public void setSpielDao(SpielDao spielDao) {
-		this.spielDao = spielDao;
 	}
 }

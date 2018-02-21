@@ -1,6 +1,11 @@
 package ch.bbcag.tictactoe.controller;
 
+import ch.bbcag.tictactoe.database.SpielDao;
+import ch.bbcag.tictactoe.database.SpielJdbcDao;
 import ch.bbcag.tictactoe.helper.GameModus;
+import ch.bbcag.tictactoe.model.Ergebnis;
+import ch.bbcag.tictactoe.model.Spiel;
+import ch.bbcag.tictactoe.model.Spieler;
 
 public class GameController {
 
@@ -9,6 +14,7 @@ public class GameController {
 	private GameModus gameModus;
 
 	private String xy;
+	private SpielDao spielDao = new SpielJdbcDao();
 
 	public String getXy() {
 		return xy;
@@ -43,7 +49,8 @@ public class GameController {
 		// int x;
 		// int y;
 		System.out.println("Aktueller Playerturn: " + computerObject.isPlayerTurn());
-		//TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran ist.
+		// TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran
+		// ist.
 		if (computerObject.isPlayerTurn()) {
 			if (GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
 
@@ -56,13 +63,27 @@ public class GameController {
 				// getCordinatesForButton(x,y);
 				// TODO informiere View, dass Computer die Position posComputer gesetzt hat
 				computerObject.setPlayerMove(i, j);
-				computerObject.checkForWin();
+				if (computerObject.checkForWin()) {
+					Spiel spiel = new Spiel();
+					Ergebnis ergebnis = new Ergebnis();
+					ergebnis.setErgebnis("Hurra");
+					spiel.setErgebnis(ergebnis);
+					Spieler spieler1 = new Spieler();
+					spieler1.setName(getPlayer());
+					Spieler spieler2 = new Spieler();
+					spieler2.setName("Computer");
+					spiel.setSpieler_1(spieler1);
+					spiel.setSpieler_2(spieler2);
+					spiel.setZeit("01:22");
+					spielDao.insertSpiel(spiel);
+				}
 				return "spieler";
 			} else {
 				// TODO Spieler vs Spieler soll startbereit sein(falls es noch nicht so ist)
 				return null;
 			}
-		//TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran ist.
+			// TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran
+			// ist.
 		} else {
 			System.err.println("Du bist nicht am Zug!");
 			return null;

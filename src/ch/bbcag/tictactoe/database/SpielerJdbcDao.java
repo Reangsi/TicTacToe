@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import ch.bbcag.tictactoe.model.Spieler;
 
@@ -18,7 +19,7 @@ public class SpielerJdbcDao implements SpielerDao {
 		int newPK = 0;
 
 		try {
-			ps = con.prepareStatement(sql);
+			ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, spieler.getName());
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
@@ -30,7 +31,7 @@ public class SpielerJdbcDao implements SpielerDao {
 			throw new RuntimeException("Spieler " + spieler.getName() + " konnte nicht gespeichert werden.", e);
 		} finally {
 			try {
-				if (ps != null)  {
+				if (ps != null) {
 					ps.close();
 				}
 
