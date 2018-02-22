@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import ch.bbcag.tictactoe.TicTacToeView;
 import ch.bbcag.tictactoe.controller.GameController;
+import ch.bbcag.tictactoe.helper.GameModus;
 
 public class NameEinsGegenPc extends JPanel {
 
@@ -53,6 +54,7 @@ public class NameEinsGegenPc extends JPanel {
 				if (!name.getText().trim().isEmpty()) {
 					setVisible(false);
 					GAME_CONTROLLER.setPlayer(name.getText());
+					GAME_CONTROLLER.setGameModus(GameModus.PLAYER_VS_COMPUTER);
 					XorO xoro = new XorO(frame);
 					frame.switchJPanel(xoro);
 					System.out.println("Ok Button pressed");

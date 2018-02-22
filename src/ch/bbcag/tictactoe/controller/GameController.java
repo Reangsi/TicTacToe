@@ -13,16 +13,12 @@ public class GameController {
 
 	private GameModus gameModus;
 
-	private String xy;
 	private SpielDao spielDao = new SpielJdbcDao();
 
-	public String getXy() {
-		return xy;
-	}
-
-	private ComputerGameLogicController computerObject = new ComputerGameLogicController();
+	private ComputerGameLogicController computerObject;
 
 	private GameController() {
+		this.computerObject = new ComputerGameLogicController(this);
 	}
 
 	public static GameController getGameController() {
@@ -35,6 +31,18 @@ public class GameController {
 
 	public void setPlayer(String player) {
 		this.computerObject.setPlayer(player);
+	}
+	
+	public String getPlayer2() {
+		return this.computerObject.getPlayer2();
+	}
+
+	public void setPlayer2(String player) {
+		this.computerObject.setPlayer2(player);
+	}
+	
+	public boolean isPlayerTurn() {
+		return this.computerObject.isPlayerTurn();
 	}
 
 	public GameModus getGameModus() {
@@ -51,22 +59,17 @@ public class GameController {
 		System.out.println("Aktueller Playerturn: " + computerObject.isPlayerTurn());
 		// TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran
 		// ist.
-		if (computerObject.isPlayerTurn()) {
-			if (GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
-
+		if (computerObject.isPlayerTurn() && GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
 				// int[] posComputer = computerObject.computerPlayMove();
-
 				// TODO zeichen sollte hier schon gewechselt sein!!! Auf Variable "view"
-				// aufrufen
-				// x = posComputer[0];
-				// y = posComputer[1];
-				// getCordinatesForButton(x,y);
 				// TODO informiere View, dass Computer die Position posComputer gesetzt hat
 				computerObject.setPlayerMove(i, j);
-				if (computerObject.checkForWin()) {
+				if (computerObject.checkForWin().equals("gewonnen")) {
+					insertDataInDB("gewonnen", "computer", "");
+				} else {
 					Spiel spiel = new Spiel();
 					Ergebnis ergebnis = new Ergebnis();
-					ergebnis.setErgebnis("Hurra");
+					ergebnis.setErgebnis("gewonnen");
 					spiel.setErgebnis(ergebnis);
 					Spieler spieler1 = new Spieler();
 					spieler1.setName(getPlayer());
@@ -78,22 +81,44 @@ public class GameController {
 					spielDao.insertSpiel(spiel);
 				}
 				return "spieler";
-			} else {
-				// TODO Spieler vs Spieler soll startbereit sein(falls es noch nicht so ist)
-				return null;
-			}
 			// TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran
 			// ist.
-		} else {
+		} else if (GameModus.PLAYER_VS_PLAYER.equals(gameModus)){
+			if (computerObject.isPlayerTurn()) {
+			computerObject.setPlayerMove(i, j);
+			// check for win			
+			} else {
+			computerObject.setPlayerMove2(i, j);
+			// check for win
+			}
+		} else if (computerObject.isPlayerTurn() == false && GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
 			System.err.println("Du bist nicht am Zug!");
 			return null;
+		} else {
+			
 		}
-
+		return "";
 	}
+	
 
 	public int[] doComputerMove() {
 		// TODO: Fix NullPointerEx.
 		return computerObject.computerPlayMove();
+	}
+	
+	private void insertDataInDB(String ergebnisEingabe, String computer, String zeit) {
+		Spiel spiel = new Spiel();
+		Ergebnis ergebnis = new Ergebnis();
+		ergebnis.setErgebnis(ergebnisEingabe);
+		spiel.setErgebnis(ergebnis);
+		Spieler spieler1 = new Spieler();
+		spieler1.setName(getPlayer());
+		Spieler spieler2 = new Spieler();
+		spieler2.setName(computer);
+		spiel.setSpieler_1(spieler1);
+		spiel.setSpieler_2(spieler2);
+		spiel.setZeit(zeit);
+		spielDao.insertSpiel(spiel);
 	}
 
 	// public int getCordinatesForLogic(int i) {

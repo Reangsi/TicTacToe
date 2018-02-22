@@ -2,12 +2,13 @@ package ch.bbcag.tictactoe.controller;
 
 public class ComputerGameLogicController {
 	private String player;
+	private String player2;
 	private String computer = "computer";
-	private String[][] spielfeld = new String[3][3];
+	private transient String[][] spielfeld = new String[3][3];
 	private boolean isPlayerTurn = true;
 	int[] posComputer = null;
-
-	public ComputerGameLogicController() {
+	
+	public ComputerGameLogicController(GameController gameControllerObjekt) {
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
 				spielfeld[x][y] = new String();
@@ -309,12 +310,16 @@ public class ComputerGameLogicController {
 		this.player = player;
 	}
 
-	public void setPlayer1(String player) {
-		this.player = player;
-	}
-
 	public String getPlayer() {
 		return this.player;
+	}
+
+	public String getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(String player2) {
+		this.player2 = player2;
 	}
 
 	public boolean checkHorizontalRow(int i) {
@@ -351,19 +356,42 @@ public class ComputerGameLogicController {
 		return false;
 	}
 
-	public boolean checkForWin() {
+	public String checkForWin() {
+		if (
+		checkHorizontalRow(0) == true ||
+		checkHorizontalRow(1) == true ||
+		checkHorizontalRow(2) == true ||
 
-		checkHorizontalRow(0);
-		checkHorizontalRow(1);
-		checkHorizontalRow(2);
+		checkVertikalRow(0) == true ||
+		checkVertikalRow(1) == true ||
+		checkVertikalRow(2) == true ||
 
-		checkVertikalRow(0);
-		checkVertikalRow(1);
-		checkVertikalRow(2);
-
-		checkDiagonalFromRightToLeftRow();
-		checkDiagonalFromLeftToRightRow();
-		return true;
+		checkDiagonalFromRightToLeftRow() == true ||
+		checkDiagonalFromLeftToRightRow() == true ) {
+		return "gewonnen";	
+		} else if (checkEmptyFilds() == true) {
+			return "gleichstandOderVerloren";
+		}
+		return "";
+	}
+	
+	private boolean checkEmptyFilds() {
+		int numberOfEmptyFields = 0;
+		
+		for (int i = 0; i < spielfeld.length; i++) {
+			for (int j = 0; j < spielfeld.length; j++) {
+				if (spielfeld[i][j].equals("")) {
+					numberOfEmptyFields++;
+				}
+			}
+		}
+		
+		if (numberOfEmptyFields == 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	public void clear() {
@@ -382,6 +410,15 @@ public class ComputerGameLogicController {
 		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer();
+			switchPlayerTurn();
+			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
+		}
+	}
+	
+	public void setPlayerMove2(int i, int j) {
+		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
+		if (spielfeld[i][j].isEmpty()) {
+			spielfeld[i][j] = this.getPlayer2();
 			switchPlayerTurn();
 			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
 		}

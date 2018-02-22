@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 import ch.bbcag.tictactoe.TicTacToeView;
 import ch.bbcag.tictactoe.controller.GameController;
+import ch.bbcag.tictactoe.helper.GameModus;
 import ch.bbcag.tictactoe.helper.Timer;
 
 public class GridButtons extends JPanel implements TimedLabels {
@@ -52,42 +53,52 @@ public class GridButtons extends JPanel implements TimedLabels {
 				b.setName("" + x + ";" + y);
 				b.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					String[] buttonCoordinates = b.getName().split(";");
-					String currentMove = GAME_CONTROLLER.setField(new Integer(buttonCoordinates[0]) , new Integer(buttonCoordinates[1]));
-					int[] computerMove = new int[0];
-					String computerMoveButton = new String();
-					if(currentMove == null) {
-						nameErrorMessage(frame);
-					} else if (currentMove.equals("spieler")) {
-						b.setIcon(iconX);
-						//b.setEnabled(false);
-						computerMove = GAME_CONTROLLER.doComputerMove();
-					}
-					if (computerMove.length == 2) {
-						computerMoveButton = Integer.valueOf(computerMove[0]) + ";" + Integer.valueOf(computerMove[1]);
-					}
-					for (JButton button : buttonList) {
-						if (button.getName().equals(computerMoveButton)) {
-							button.setIcon(iconO);
-							//button.setEnabled(false);
-							button.revalidate();
-							break;
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String[] buttonCoordinates = b.getName().split(";");
+						String currentMove = GAME_CONTROLLER.setField(new Integer(buttonCoordinates[0]),
+								new Integer(buttonCoordinates[1]));
+						if (GameModus.PLAYER_VS_COMPUTER.equals(GAME_CONTROLLER.getGameModus())) {
+							int[] computerMove = new int[0];
+							String computerMoveButton = new String();
+							if (currentMove == null) {
+								nameErrorMessage(frame);
+							} else if (currentMove.equals("spieler")) {
+								b.setIcon(iconX);
+								// b.setEnabled(false);
+								computerMove = GAME_CONTROLLER.doComputerMove();
+							}
+							if (computerMove.length == 2) {
+								computerMoveButton = Integer.valueOf(computerMove[0]) + ";"
+										+ Integer.valueOf(computerMove[1]);
+							}
+							for (JButton button : buttonList) {
+								if (button.getName().equals(computerMoveButton)) {
+									button.setIcon(iconO);
+									// button.setEnabled(false);
+									button.revalidate();
+									break;
+								}
+							}
+						} else {
+							if (GAME_CONTROLLER.isPlayerTurn()) {
+								b.setIcon(iconX);
+							} else {
+								b.setIcon(iconO);
+							}
 						}
+
+						// if (b.getName().equals(GAME_CONTROLLER.getXy()) == true) {
+						// } else {
+						// System.err.println("Findet button nicht!");
+						// }
+
 					}
-//					if (b.getName().equals(GAME_CONTROLLER.getXy()) == true) {
-//					} else {
-//						System.err.println("Findet button nicht!");
-//					}
-						
-					
-				}
 				});
 				gamePanel.add(b);
 				buttonList.add(b);
 
-				//b.doClick();
+				// b.doClick();
 			}
 
 		}
@@ -106,10 +117,9 @@ public class GridButtons extends JPanel implements TimedLabels {
 		 */
 
 	}
-	
+
 	private void nameErrorMessage(TicTacToeView parentPanel) {
-		JOptionPane.showMessageDialog(parentPanel, "Du bist nicht am Zug!", "Error",
-				JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(parentPanel, "Du bist nicht am Zug!", "Error", JOptionPane.WARNING_MESSAGE);
 	}
 
 	public void setButtonIcon(int posX, int posY) {
