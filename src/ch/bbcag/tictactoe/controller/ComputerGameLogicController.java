@@ -8,7 +8,7 @@ public class ComputerGameLogicController {
 
 	private boolean isPlayerTurn = true;
 	int[] posComputer = null;
-	
+
 	public ComputerGameLogicController(GameController gameControllerObjekt) {
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
@@ -324,36 +324,29 @@ public class ComputerGameLogicController {
 	}
 
 	public boolean checkHorizontalRow(int i, String playerName) {
-		for (int j = 0; j < 2; j++) {
-			if (spielfeld[i][j] == playerName) {
-				return true;
-			} else {
-				return false;
-			}
+
+		if (spielfeld[i][0] == playerName && spielfeld[i][1] == playerName && spielfeld[i][2] == playerName) {
+			return true;
+		} else {
+			return false;
 		}
-		return false;
+
 	}
 
 	public boolean checkVertikalRow(int j, String playerName) {
-		for (int i = 0; i < 2; i++) {
-			if (spielfeld[i][j] == playerName) {
-				return true;
-			} else {
-				return false;
-			}
+		if (spielfeld[0][j] == playerName && spielfeld[1][j] == playerName && spielfeld[2][j] == playerName) {
+			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	public boolean checkDiagonalFromLeftToRightRow(String playerName) {
-		for (int i = 0; i < 2; i++) {
-			if (spielfeld[i][i] == playerName) {
+			if (spielfeld[0][0] == playerName && spielfeld[1][1] == playerName && spielfeld[2][2] == playerName) {
 				return true;
 			} else {
 				return false;
 			}
-		}
-		return false;
 	}
 
 	public boolean checkDiagonalFromRightToLeftRow(String playerName) {
@@ -365,27 +358,24 @@ public class ComputerGameLogicController {
 	}
 
 	public String checkForWin(String playerName) {
-		if (
-		checkHorizontalRow(0, playerName) == true ||
-		checkHorizontalRow(1, playerName) == true ||
-		checkHorizontalRow(2, playerName) == true ||
+		if (checkHorizontalRow(0, playerName) == true || checkHorizontalRow(1, playerName) == true
+				|| checkHorizontalRow(2, playerName) == true ||
 
-		checkVertikalRow(0, playerName) == true ||
-		checkVertikalRow(1, playerName) == true ||
-		checkVertikalRow(2, playerName) == true ||
+				checkVertikalRow(0, playerName) == true || checkVertikalRow(1, playerName) == true
+				|| checkVertikalRow(2, playerName) == true ||
 
-		checkDiagonalFromRightToLeftRow(playerName) == true ||
-		checkDiagonalFromLeftToRightRow(playerName) == true ) {
-		return "gewonnen";	
+				checkDiagonalFromRightToLeftRow(playerName) == true
+				|| checkDiagonalFromLeftToRightRow(playerName) == true) {
+			return "gewonnen";
 		} else if (checkEmptyFilds() == true) {
 			return "gleichstandOderVerloren";
 		}
 		return "";
 	}
-	
+
 	private boolean checkEmptyFilds() {
 		int numberOfEmptyFields = 0;
-		
+
 		for (int i = 0; i < spielfeld.length; i++) {
 			for (int j = 0; j < spielfeld.length; j++) {
 				if (spielfeld[i][j].equals("")) {
@@ -393,13 +383,13 @@ public class ComputerGameLogicController {
 				}
 			}
 		}
-		
+
 		if (numberOfEmptyFields == 0) {
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
 
 	public void clear() {
@@ -415,23 +405,27 @@ public class ComputerGameLogicController {
 	}
 
 	public void setPlayerMove(int i, int j) {
-//		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
+		// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: "
+		// + spielfeld[i][j]);
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer();
 			switchPlayerTurn();
-//			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
+			// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER:
+			// " + spielfeld[i][j]);
 		}
 	}
-	
+
 	public void setPlayerMove2(int i, int j) {
-//		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
+		// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: "
+		// + spielfeld[i][j]);
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer2();
 			switchPlayerTurn();
-//			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
+			// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER:
+			// " + spielfeld[i][j]);
 		}
 	}
-	
+
 	public String[][] getSpielfeld() {
 		return spielfeld;
 	}

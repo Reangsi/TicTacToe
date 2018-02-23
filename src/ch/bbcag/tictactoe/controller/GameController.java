@@ -55,15 +55,11 @@ public class GameController {
 	}
 
 	public String setField(int i, int j, String timer) {
-		// int x;
-		// int y;
+		
 		System.out.println("Aktueller Playerturn: " + computerObject.isPlayerTurn());
-		// TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran
-		// ist.
+
 		if (computerObject.isPlayerTurn() && GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
-			// int[] posComputer = computerObject.computerPlayMove();
-			// TODO zeichen sollte hier schon gewechselt sein!!! Auf Variable "view"
-			// TODO informiere View, dass Computer die Position posComputer gesetzt hat
+
 			computerObject.setPlayerMove(i, j);
 			if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
 				insertDataInDB(getPlayer(), "gewonnen", "computer", "");
@@ -82,14 +78,14 @@ public class GameController {
 				spielDao.insertSpiel(spiel);
 			}
 			return "spieler";
-			// TODO: Fix sodass der Spieler nur klicken kann, wenn er auch wirklich dran
-			// ist.
+
 		} else if (GameModus.PLAYER_VS_PLAYER.equals(gameModus)) {
 			if (computerObject.isPlayerTurn()) {
 				computerObject.setPlayerMove(i, j);
 				if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
 //					insertDataInDB(getPlayer(), "gewonnen", getPlayer2(), timer);
 					System.out.println(getPlayer() + " gewonnen");
+					
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
 //					insertDataInDB(getPlayer(), "gleichstand", getPlayer2(), timer);
@@ -149,60 +145,7 @@ public class GameController {
 		spiel.setZeit(zeit);
 		spielDao.insertSpiel(spiel);
 	}
-	
 
-	// public int getCordinatesForLogic(int i) {
-	// int x = 0;
-	// int y = 0;
-	// int[] xyList = new int[2];
-	// if (i > 9 || i < 1) {
-	// throw new IllegalArgumentException("I muss zwischen 1 und 9 sein!");
-	// }
-	// switch (i) {
-	// case 1:
-	// x = 0;
-	// y = 0;
-	// break;
-	// case 2:
-	// x = 0;
-	// y = 1;
-	// break;
-	// case 3:
-	// x = 0;
-	// y = 2;
-	// break;
-	// case 4:
-	// x = 1;
-	// y = 0;
-	// break;
-	// case 5:
-	// x = 1;
-	// y = 1;
-	// break;
-	// case 6:
-	// x = 1;
-	// y = 2;
-	// break;
-	// case 7:
-	// x = 2;
-	// y = 0;
-	// break;
-	// case 8:
-	// x = 2;
-	// y = 1;
-	// break;
-	// case 9:
-	// x = 2;
-	// y = 2;
-	// break;
-	//
-	// }
-	// xyList[0] = x;
-	// xyList[1] = y;
-	// for (int z = 0; z < 2; z++) {
-	// return xyList[z];
-	// }
-	// }
 
 }
 
