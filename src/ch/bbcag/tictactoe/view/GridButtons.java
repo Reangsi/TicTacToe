@@ -57,7 +57,7 @@ public class GridButtons extends JPanel implements TimedLabels {
 					public void actionPerformed(ActionEvent e) {
 						String[] buttonCoordinates = b.getName().split(";");
 						String currentMove = GAME_CONTROLLER.setField(new Integer(buttonCoordinates[0]),
-								new Integer(buttonCoordinates[1]));
+								new Integer(buttonCoordinates[1]), getTimerLabel());
 						if (GameModus.PLAYER_VS_COMPUTER.equals(GAME_CONTROLLER.getGameModus())) {
 							int[] computerMove = new int[0];
 							String computerMoveButton = new String();
@@ -129,6 +129,11 @@ public class GridButtons extends JPanel implements TimedLabels {
 	public void updateTime(String[] time) {
 
 		timerLabel.setText("Duration: " + time[0] + ":" + time[1]);
+	}
+
+	private String getTimerLabel() {
+		
+		return timerLabel.getText();
 	}
 
 }

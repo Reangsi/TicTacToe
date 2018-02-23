@@ -5,6 +5,7 @@ public class ComputerGameLogicController {
 	private String player2;
 	private String computer = "computer";
 	private transient String[][] spielfeld = new String[3][3];
+
 	private boolean isPlayerTurn = true;
 	int[] posComputer = null;
 	
@@ -322,52 +323,59 @@ public class ComputerGameLogicController {
 		this.player2 = player2;
 	}
 
-	public boolean checkHorizontalRow(int i) {
+	public boolean checkHorizontalRow(int i, String playerName) {
 		for (int j = 0; j < 2; j++) {
-			if (spielfeld[i][j] == player) {
+			if (spielfeld[i][j] == playerName) {
 				return true;
+			} else {
+				return false;
 			}
 		}
 		return false;
 	}
 
-	public boolean checkVertikalRow(int j) {
+	public boolean checkVertikalRow(int j, String playerName) {
 		for (int i = 0; i < 2; i++) {
-			if (spielfeld[i][j] == player) {
+			if (spielfeld[i][j] == playerName) {
 				return true;
+			} else {
+				return false;
 			}
 		}
 		return false;
 	}
 
-	public boolean checkDiagonalFromLeftToRightRow() {
+	public boolean checkDiagonalFromLeftToRightRow(String playerName) {
 		for (int i = 0; i < 2; i++) {
-			if (spielfeld[i][i] == player) {
+			if (spielfeld[i][i] == playerName) {
 				return true;
+			} else {
+				return false;
 			}
 		}
 		return false;
 	}
 
-	public boolean checkDiagonalFromRightToLeftRow() {
-		if (spielfeld[2][0] == player && spielfeld[1][1] == player && spielfeld[0][2] == player) {
+	public boolean checkDiagonalFromRightToLeftRow(String playerName) {
+		if (spielfeld[2][0] == playerName && spielfeld[1][1] == playerName && spielfeld[0][2] == playerName) {
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
-	public String checkForWin() {
+	public String checkForWin(String playerName) {
 		if (
-		checkHorizontalRow(0) == true ||
-		checkHorizontalRow(1) == true ||
-		checkHorizontalRow(2) == true ||
+		checkHorizontalRow(0, playerName) == true ||
+		checkHorizontalRow(1, playerName) == true ||
+		checkHorizontalRow(2, playerName) == true ||
 
-		checkVertikalRow(0) == true ||
-		checkVertikalRow(1) == true ||
-		checkVertikalRow(2) == true ||
+		checkVertikalRow(0, playerName) == true ||
+		checkVertikalRow(1, playerName) == true ||
+		checkVertikalRow(2, playerName) == true ||
 
-		checkDiagonalFromRightToLeftRow() == true ||
-		checkDiagonalFromLeftToRightRow() == true ) {
+		checkDiagonalFromRightToLeftRow(playerName) == true ||
+		checkDiagonalFromLeftToRightRow(playerName) == true ) {
 		return "gewonnen";	
 		} else if (checkEmptyFilds() == true) {
 			return "gleichstandOderVerloren";
@@ -407,21 +415,25 @@ public class ComputerGameLogicController {
 	}
 
 	public void setPlayerMove(int i, int j) {
-		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
+//		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer();
 			switchPlayerTurn();
-			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
+//			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
 		}
 	}
 	
 	public void setPlayerMove2(int i, int j) {
-		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
+//		System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: " + spielfeld[i][j]);
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer2();
 			switchPlayerTurn();
-			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
+//			System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER: " + spielfeld[i][j]);
 		}
+	}
+	
+	public String[][] getSpielfeld() {
+		return spielfeld;
 	}
 
 }
