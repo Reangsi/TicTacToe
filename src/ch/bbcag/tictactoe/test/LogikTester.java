@@ -63,11 +63,102 @@ public class LogikTester {
 	 * {@link ch.bbcag.tictactoe.controller.ComputerGameLogicController#checkForWin(java.lang.String)}.
 	 */
 	@Test
-	public void testCheckForWin() {
+	public void testCheckForWin_first_horizontal_Row() {
 		// init spielfeld
 		logik.getSpielfeld()[0][0] = COMPUTER;
 		logik.getSpielfeld()[0][1] = COMPUTER;
 		logik.getSpielfeld()[0][2] = COMPUTER;
+		// end of init
+
+		final String EXPECTED_RESULT = "gewonnen";
+		String result = logik.checkForWin(COMPUTER);
+		Assert.assertEquals(EXPECTED_RESULT, result);
+	}
+	
+	@Test
+	public void testCheckForWin_second_horizontal_Row() {
+		// init spielfeld
+		logik.getSpielfeld()[1][0] = COMPUTER;
+		logik.getSpielfeld()[1][1] = COMPUTER;
+		logik.getSpielfeld()[1][2] = COMPUTER;
+		// end of init
+
+		final String EXPECTED_RESULT = "gewonnen";
+		String result = logik.checkForWin(COMPUTER);
+		Assert.assertEquals(EXPECTED_RESULT, result);
+	}
+	
+	@Test
+	public void testCheckForWin_third_horizontal_Row() {
+		// init spielfeld
+		logik.getSpielfeld()[2][0] = COMPUTER;
+		logik.getSpielfeld()[2][1] = COMPUTER;
+		logik.getSpielfeld()[2][2] = COMPUTER;
+		// end of init
+
+		final String EXPECTED_RESULT = "gewonnen";
+		String result = logik.checkForWin(COMPUTER);
+		Assert.assertEquals(EXPECTED_RESULT, result);
+	}
+
+	@Test
+	public void testCheckForWin_first_vertical_Row() {
+		// init spielfeld
+		logik.getSpielfeld()[0][0] = COMPUTER;
+		logik.getSpielfeld()[1][0] = COMPUTER;
+		logik.getSpielfeld()[2][0] = COMPUTER;
+		// end of init
+
+		final String EXPECTED_RESULT = "gewonnen";
+		String result = logik.checkForWin(COMPUTER);
+		Assert.assertEquals(EXPECTED_RESULT, result);
+	}
+	
+	@Test
+	public void testCheckForWin_second_vertical_Row() {
+		// init spielfeld
+		logik.getSpielfeld()[0][1] = COMPUTER;
+		logik.getSpielfeld()[1][1] = COMPUTER;
+		logik.getSpielfeld()[2][1] = COMPUTER;
+		// end of init
+
+		final String EXPECTED_RESULT = "gewonnen";
+		String result = logik.checkForWin(COMPUTER);
+		Assert.assertEquals(EXPECTED_RESULT, result);
+	}
+	
+	@Test
+	public void testCheckForWin_third_vertical_Row() {
+		// init spielfeld
+		logik.getSpielfeld()[0][2] = COMPUTER;
+		logik.getSpielfeld()[1][2] = COMPUTER;
+		logik.getSpielfeld()[2][2] = COMPUTER;
+		// end of init
+
+		final String EXPECTED_RESULT = "gewonnen";
+		String result = logik.checkForWin(COMPUTER);
+		Assert.assertEquals(EXPECTED_RESULT, result);
+	}
+	
+	@Test
+	public void testCheckForWin_left_to_right_Row() {
+		// init spielfeld
+		logik.getSpielfeld()[0][0] = COMPUTER;
+		logik.getSpielfeld()[1][1] = COMPUTER;
+		logik.getSpielfeld()[2][2] = COMPUTER;
+		// end of init
+
+		final String EXPECTED_RESULT = "gewonnen";
+		String result = logik.checkForWin(COMPUTER);
+		Assert.assertEquals(EXPECTED_RESULT, result);
+	}
+	
+	@Test
+	public void testCheckForWin_right_to_left_Row() {
+		// init spielfeld
+		logik.getSpielfeld()[0][2] = COMPUTER;
+		logik.getSpielfeld()[1][1] = COMPUTER;
+		logik.getSpielfeld()[2][0] = COMPUTER;
 		// end of init
 
 		final String EXPECTED_RESULT = "gewonnen";

@@ -499,8 +499,10 @@ public class ComputerGameLogicController {
 
 				checkDiagonalFromRightToLeftRow(playerName) == true
 				|| checkDiagonalFromLeftToRightRow(playerName) == true) {
+			clear();
 			return "gewonnen";
 		} else if (checkEmptyFilds() == true) {
+			clear();
 			return "gleichstandOderVerloren";
 		}
 		return "";
