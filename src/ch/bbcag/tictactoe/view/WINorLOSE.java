@@ -17,57 +17,41 @@ import ch.bbcag.tictactoe.TicTacToeView;
 
 public class WINorLOSE extends JPanel {
 
-	private static final long serialVersionUID = 1L;
-	private static JPanel headPanel;
-	private static JPanel history;
-	private static JButton restart = new JButton("Restart");
+	private static final long serialVersionUID = 6118968701538046010L;
+	private JPanel headPanel;
+	private JPanel history;
+	private JPanel southPanel;	
+	private JButton restart;
 	private JLabel winLabel;
-	private JPanel winPanel;
-	private JPanel southPanel;
+
 
 	public WINorLOSE (TicTacToeView frame, String resultat) {
 		
-		frame.setSize(500, 500);
-		frame.setVisible(true);
-		frame.setBackground(Color.BLACK);
+		setLayout(new BorderLayout());
+		setSize(500, 500);
+		setVisible(true);
+		setBackground(Color.BLACK);
 		
-		//Panels
-		headPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30));
-		history = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
-		southPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 30));
-		setWinPanel(new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30)));
-
-
-		// Gewonnen
-		winLabel = new JLabel("Gewonnen!");
-		winLabel.setFont(new Font("Arial", Font.BOLD, 24));
-		winLabel.setForeground(Color.white);
-		
-		//Verloren
-		/*winLabel = new JLabel("Verloren");
-		winLabel.setFont(new Font("Arial", Font.BOLD, 24));
-		winLabel.setForeground(Color.white);*/
-		
-		//Unentschieden
-		/*winLabel = new JLabel("Unentschieden");
-		winLabel.setFont(new Font("Arial", Font.BOLD, 24));
-		winLabel.setForeground(Color.white);*/
-		
-
-		// Backgrounds
-		winPanel.setBackground(Color.BLUE);
-		history.setBackground(Color.BLACK);
-		southPanel.setBackground(Color.RED);
-		history.setBackground(Color.BLACK);
-
-		add(history, BorderLayout.CENTER);
-		add(restart, BorderLayout.SOUTH);
-		add(southPanel, BorderLayout.SOUTH);
-		add(winPanel, BorderLayout.NORTH);
-
-		winPanel.add(winLabel);
-		southPanel.add(restart);
+		headPanel = new JPanel();
+		history = new JPanel();
+		southPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		restart = new JButton("Restart");
+		
+		if (resultat.equals("gewonnen")) {
+			winLabel = new JLabel("GEWONNEN");
+		} else if (resultat.equals("verloren")) {
+			winLabel = new JLabel("VERLOREN");
+		} else if (resultat.equals("gleichstand")) {
+			winLabel = new JLabel("GLEICHSTAND");
+		}
+		
+		headPanel.add(winLabel);
+		southPanel.add(restart);
+		
+		add(headPanel, BorderLayout.NORTH);
+		add(history, BorderLayout.CENTER);
+		add(southPanel, BorderLayout.SOUTH);
+		
 		
 		restart.addActionListener(new ActionListener() {
 			@Override

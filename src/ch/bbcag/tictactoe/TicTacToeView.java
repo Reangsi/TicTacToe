@@ -70,8 +70,8 @@ public class TicTacToeView extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		
-		StartScreen wol = new StartScreen(frame);
-		frame.add(wol);
+		StartScreen start = new StartScreen(frame);
+		frame.add(start);
 		frame.pack();
 		frame.setVisible(true);
 /*
