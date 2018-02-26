@@ -62,20 +62,9 @@ public class GameController {
 
 			computerObject.setPlayerMove(i, j);
 			if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
-				insertDataInDB(getPlayer(), "gewonnen", "computer", "");
+//				insertDataInDB(getPlayer(), "gewonnen", "computer", "");
 			} else {
-				Spiel spiel = new Spiel();
-				Ergebnis ergebnis = new Ergebnis();
-				ergebnis.setErgebnis("verloren");
-				spiel.setErgebnis(ergebnis);
-				Spieler spieler1 = new Spieler();
-				spieler1.setName(getPlayer());
-				Spieler spieler2 = new Spieler();
-				spieler2.setName("Computer");
-				spiel.setSpieler_1(spieler1);
-				spiel.setSpieler_2(spieler2);
-				spiel.setZeit("01:22");
-				spielDao.insertSpiel(spiel);
+//				insertDataInDB(getPlayer(), "verloren", "computer", "");
 			}
 			return "spieler";
 
