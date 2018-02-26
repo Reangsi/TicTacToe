@@ -25,7 +25,7 @@ public class WINorLOSE extends JPanel {
 	private JLabel winLabel;
 
 
-	public WINorLOSE (TicTacToeView frame, String resultat) {
+	public WINorLOSE (TicTacToeView frame, String resultat, String player) {
 		
 		setLayout(new BorderLayout());
 		setSize(500, 500);
@@ -38,13 +38,16 @@ public class WINorLOSE extends JPanel {
 		restart = new JButton("Restart");
 		
 		if (resultat.equals("gewonnen")) {
-			winLabel = new JLabel("GEWONNEN");
+			winLabel = new JLabel(player + "hat GEWONNEN");
 		} else if (resultat.equals("verloren")) {
-			winLabel = new JLabel("VERLOREN");
+			winLabel = new JLabel(player + "hat VERLOREN");
 		} else if (resultat.equals("gleichstand")) {
 			winLabel = new JLabel("GLEICHSTAND");
+		} else if (resultat.equals("gewonnen2")) {
+			winLabel = new JLabel(player + "hat GEWONNEN");
+		} else if (resultat.equals("verloren2")) {
+			winLabel = new JLabel(player + "hat VERLOREN");
 		}
-		
 		headPanel.add(winLabel);
 		southPanel.add(restart);
 		

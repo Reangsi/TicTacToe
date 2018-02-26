@@ -64,8 +64,11 @@ public class GameController {
 			if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
 //				insertDataInDB(getPlayer(), "gewonnen", "computer", "");
 				return "gewonnen";
-			} else {
+			} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren") && computerObject.checkForWin("computer").equals("gleichstandOderVerloren")) {
 //				insertDataInDB(getPlayer(), "verloren", "computer", "");
+				return "gleichstand";
+			} else if (computerObject.checkForWin("computer").equals("gleichstandOderVerloren")) {
+				return "verloren";
 			}
 			return "spieler";
 
@@ -96,7 +99,7 @@ public class GameController {
 				if (computerObject.checkForWin(getPlayer2()).equals("gewonnen")) {
 //					insertDataInDB(getPlayer2(), "gewonnen", getPlayer(), timer);
 					System.out.println(getPlayer2() + " gewonnen");
-					return "gewonnen";
+					return "gewonnen2";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
 //					insertDataInDB(getPlayer2(), "gleichstand", getPlayer(), timer);
@@ -106,7 +109,7 @@ public class GameController {
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")){
 //					insertDataInDB(getPlayer2(), "verloren", getPlayer(), timer);
 					System.out.println(getPlayer2() + " verloren");
-					return "verloren";
+					return "verloren2";
 				} else if (computerObject.checkForWin(getPlayer()).equals("")) {
 					
 				}
