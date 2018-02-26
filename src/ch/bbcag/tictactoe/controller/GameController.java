@@ -99,7 +99,7 @@ public class GameController {
 				if (computerObject.checkForWin(getPlayer2()).equals("gewonnen")) {
 //					insertDataInDB(getPlayer2(), "gewonnen", getPlayer(), timer);
 					System.out.println(getPlayer2() + " gewonnen");
-					return "gewonnen";
+					return "gewonnen2";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
 //					insertDataInDB(getPlayer2(), "gleichstand", getPlayer(), timer);
@@ -109,7 +109,7 @@ public class GameController {
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")){
 //					insertDataInDB(getPlayer2(), "verloren", getPlayer(), timer);
 					System.out.println(getPlayer2() + " verloren");
-					return "verloren";
+					return "verloren2";
 				} else if (computerObject.checkForWin(getPlayer()).equals("")) {
 					
 				}

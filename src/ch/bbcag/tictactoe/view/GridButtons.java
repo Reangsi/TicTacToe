@@ -61,18 +61,30 @@ public class GridButtons extends JPanel implements TimedLabels {
 						if (currentMove.equals("gewonnen")) {
 							timer.stopTimer();
 							setVisible(false);
-							WINorLOSE wORl = new WINorLOSE(frame, "gewonnen");
+							WINorLOSE wORl = new WINorLOSE(frame, "gewonnen", GAME_CONTROLLER.getPlayer());
 							frame.switchJPanel(wORl);
 						} else if (currentMove.equals("verloren")) {
 							timer.stopTimer();
 							setVisible(false);
-							WINorLOSE wORl = new WINorLOSE(frame, "verloren");
+							WINorLOSE wORl = new WINorLOSE(frame, "verloren", GAME_CONTROLLER.getPlayer());
 							frame.switchJPanel(wORl);
 						} else if (currentMove.equals("gleichstand")) {
 							timer.stopTimer();
 							setVisible(false);
-							WINorLOSE wORl = new WINorLOSE(frame, "gleichstand");
+							WINorLOSE wORl = new WINorLOSE(frame, "gleichstand", "");
 							frame.switchJPanel(wORl);
+						} else if (currentMove.equals("gewonnen2")) {
+							timer.stopTimer();
+							setVisible(false);
+							WINorLOSE wORl = new WINorLOSE(frame, "gewonnen", GAME_CONTROLLER.getPlayer2());
+							frame.switchJPanel(wORl);
+						} else if (currentMove.equals("verloren2")) {
+							timer.stopTimer();
+							setVisible(false);
+							WINorLOSE wORl = new WINorLOSE(frame, "verloren", GAME_CONTROLLER.getPlayer2());
+							frame.switchJPanel(wORl);	
+							
+							
 						} else if (GameModus.PLAYER_VS_COMPUTER.equals(GAME_CONTROLLER.getGameModus())) {
 							int[] computerMove = new int[0];
 							String computerMoveButton = new String();
@@ -82,7 +94,23 @@ public class GridButtons extends JPanel implements TimedLabels {
 								b.setIcon(iconX);
 								b.setEnabled(false);
 								computerMove = GAME_CONTROLLER.doComputerMove();
+							} else if (currentMove.equals("gewonnen")) {
+								timer.stopTimer();
+								setVisible(false);
+								WINorLOSE wORl = new WINorLOSE(frame, "gewonnen", GAME_CONTROLLER.getPlayer());
+								frame.switchJPanel(wORl);
+							} else if (currentMove.equals("verloren")) {
+								timer.stopTimer();
+								setVisible(false);
+								WINorLOSE wORl = new WINorLOSE(frame, "verloren", GAME_CONTROLLER.getPlayer());
+								frame.switchJPanel(wORl);
+							} else if (currentMove.equals("gleichstand")) {
+								timer.stopTimer();
+								setVisible(false);
+								WINorLOSE wORl = new WINorLOSE(frame, "gleichstand", "");
+								frame.switchJPanel(wORl);
 							}
+							
 							if (computerMove.length == 2) {
 								computerMoveButton = Integer.valueOf(computerMove[0]) + ";"
 										+ Integer.valueOf(computerMove[1]);
