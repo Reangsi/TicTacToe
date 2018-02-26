@@ -5,6 +5,7 @@ public class ComputerGameLogicController {
 	private String player2;
 	private String computer = "computer";
 	private transient String[][] spielfeld = new String[3][3];
+	private double playerTurn;
 
 	private boolean isPlayerTurn = true;
 	int[] posComputer = null;
@@ -20,32 +21,39 @@ public class ComputerGameLogicController {
 	public int[] computerPlayMove() {
 		int[] posComputer = null;
 
-		switchPlayerTurn();
+		findOutPlayerTurn();
+		while (posComputer == null) {
 
-		posComputer = checkForTwoInARow();
-
-		if (posComputer == null) {
-
-			posComputer = tryToWin();
-
+			checkForTwoInARow();
 			if (posComputer == null) {
 
-				posComputer = playerSetztEcke();
-				// System.out.println(posComputer);
+				posComputer = playerSetztNormal();
+
 				if (posComputer == null) {
 
-					posComputer = playerSetztMitte();
-
+					posComputer = playerSetztEcke();
+					// System.out.println(posComputer);
 					if (posComputer == null) {
 
-						posComputer = playerSetztNormal();
+						posComputer = playerSetztMitte();
+
 						if (posComputer == null) {
-							System.err.println("Gibt nichts zurück!");
+
+							posComputer = tryToWin();
+							if (posComputer == null) {
+
+								posComputer = setRandom();
+								if (posComputer == null) {
+									System.err.println("Gibt nichts zurück!");
+								}
+							}
 						}
 					}
 				}
 			}
 		}
+		switchPlayerTurn();
+
 		return posComputer;
 	}
 
@@ -55,6 +63,23 @@ public class ComputerGameLogicController {
 	 * 
 	 * @return
 	 */
+
+	private void findOutPlayerTurn() {
+		// TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
+		final int NUMBER_OF_FIELDS = 9;
+		final int NUMBER_OF_PLAYERS = 2;
+		int numberOfEmptyFields = 0;
+
+		for (int i = 0; i < spielfeld.length; i++) {
+			for (int j = 0; j < spielfeld.length; j++) {
+				if (spielfeld[i][j].equals("")) {
+					numberOfEmptyFields++;
+				}
+			}
+		}
+
+		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) / NUMBER_OF_PLAYERS + 0.5;
+	}
 
 	private void switchPlayerTurn() {
 		// //TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
@@ -81,32 +106,42 @@ public class ComputerGameLogicController {
 				|| (spielfeld[1][0] == player && spielfeld[2][0] == player)
 				|| (spielfeld[1][1] == player && spielfeld[2][2] == player)) {
 
-			spielfeld[0][0] = computer;
-			posComputer = new int[] { 0, 0 };
+			if (spielfeld[0][0] != computer) {
+				spielfeld[0][0] = computer;
+				posComputer = new int[] { 0, 0 };
+			} else {
+
+			}
 		}
 
 		if ((spielfeld[0][0] == player && spielfeld[0][1] == player)
 				|| (spielfeld[1][2] == player && spielfeld[2][2] == player)
 				|| (spielfeld[2][0] == player && spielfeld[1][1] == player)) {
 
-			spielfeld[0][2] = computer;
-			posComputer = new int[] { 0, 2 };
+			if (spielfeld[0][2] != computer) {
+				spielfeld[0][2] = computer;
+				posComputer = new int[] { 0, 2 };
+			}
 		}
 
 		if ((spielfeld[2][1] == player && spielfeld[2][2] == player)
 				|| (spielfeld[0][0] == player && spielfeld[1][0] == player)
 				|| (spielfeld[1][1] == player && spielfeld[0][2] == player)) {
 
-			spielfeld[2][0] = computer;
-			posComputer = new int[] { 2, 0 };
+			if (spielfeld[2][0] != computer) {
+				spielfeld[2][0] = computer;
+				posComputer = new int[] { 2, 0 };
+			}
 		}
 
 		if ((spielfeld[0][0] == player && spielfeld[1][1] == player)
 				|| (spielfeld[0][2] == player && spielfeld[1][2] == player)
 				|| (spielfeld[2][0] == player && spielfeld[2][1] == player)) {
 
-			spielfeld[2][2] = computer;
-			posComputer = new int[] { 2, 2 };
+			if (spielfeld[2][2] != computer) {
+				spielfeld[2][2] = computer;
+				posComputer = new int[] { 2, 2 };
+			}
 		}
 
 		if ((spielfeld[0][1] == player && spielfeld[2][1] == player)
@@ -114,23 +149,31 @@ public class ComputerGameLogicController {
 				|| (spielfeld[0][0] == player && spielfeld[2][2] == player)
 				|| (spielfeld[2][0] == player && spielfeld[0][2] == player)) {
 
-			spielfeld[1][1] = computer;
-			posComputer = new int[] { 1, 1 };
+			if (spielfeld[1][1] != computer) {
+				spielfeld[1][1] = computer;
+				posComputer = new int[] { 1, 1 };
+			}
 		}
 
 		if ((spielfeld[0][1] == player && spielfeld[1][1] == player)) {
-			spielfeld[2][1] = computer;
-			posComputer = new int[] { 2, 1 };
+			if (spielfeld[2][1] != computer) {
+				spielfeld[2][1] = computer;
+				posComputer = new int[] { 2, 1 };
+			}
 		}
 
 		if ((spielfeld[1][1] == player && spielfeld[2][1] == player)) {
-			spielfeld[0][1] = computer;
-			posComputer = new int[] { 0, 1 };
+			if (spielfeld[0][1] != computer) {
+				spielfeld[0][1] = computer;
+				posComputer = new int[] { 0, 1 };
+			}
 		}
 
 		if ((spielfeld[1][1] == player && spielfeld[1][2] == player)) {
-			spielfeld[1][0] = computer;
-			posComputer = new int[] { 1, 0 };
+			if (spielfeld[1][0] != computer) {
+				spielfeld[1][0] = computer;
+				posComputer = new int[] { 1, 0 };
+			}
 		}
 
 		if ((spielfeld[1][0] == player && spielfeld[1][1] == player)) {
@@ -139,15 +182,40 @@ public class ComputerGameLogicController {
 		}
 
 		if ((spielfeld[0][0] == player && spielfeld[0][2] == player)) {
-			spielfeld[0][1] = computer;
-			posComputer = new int[] { 0, 1 };
+			if (spielfeld[0][1] != computer) {
+				spielfeld[0][1] = computer;
+				posComputer = new int[] { 0, 1 };
+			}
 		}
 
 		if ((spielfeld[0][0] == player && spielfeld[1][1] == player)) {
-			spielfeld[2][2] = computer;
-			posComputer = new int[] { 2, 2 };
+			if (spielfeld[2][2] != computer) {
+				spielfeld[2][2] = computer;
+				posComputer = new int[] { 2, 2 };
+			}
 		}
-
+		
+		if ((spielfeld[0][0] == player && spielfeld[2][0] == player)) {
+			if (spielfeld[1][0] != computer) {
+				spielfeld[1][0] = computer;
+				posComputer = new int[] { 1, 0 };
+			}
+		}
+		
+		if ((spielfeld[0][2] == player && spielfeld[2][2] == player)) {
+			if (spielfeld[1][2] != computer) {
+				spielfeld[1][2] = computer;
+				posComputer = new int[] { 1, 2 };
+			}
+		}
+		
+		if ((spielfeld[2][0] == player && spielfeld[2][2] == player)) {
+			if (spielfeld[2][1] != computer) {
+				spielfeld[2][1] = computer;
+				posComputer = new int[] { 2, 1 };
+			}
+		}
+		
 		return posComputer;
 	}
 
@@ -162,16 +230,20 @@ public class ComputerGameLogicController {
 
 	private int[] playerSetztMitte() {
 
-		if (!isPlayerTurn) {
+		if (playerTurn == 0.5) {
 			if (spielfeld[1][1] == player) {
-				spielfeld[0][0] = computer;
-				posComputer = new int[] { 0, 0 };
+				if (spielfeld[0][0] != computer) {
+					spielfeld[0][0] = computer;
+					posComputer = new int[] { 0, 0 };
+				}
 			}
 		}
 
-		else if (isPlayerTurn) {
-			spielfeld[2][0] = computer;
-			posComputer = new int[] { 2, 0 };
+		else if (playerTurn == 1.5) {
+			if (spielfeld[2][0] != computer) {
+				spielfeld[2][0] = computer;
+				posComputer = new int[] { 2, 0 };
+			}
 		}
 		return posComputer;
 	}
@@ -180,43 +252,50 @@ public class ComputerGameLogicController {
 
 		if (spielfeld[0][0] == player || spielfeld[0][2] == player || spielfeld[2][0] == player
 				|| spielfeld[2][2] == player) {
-			if (!isPlayerTurn) {
+			if (playerTurn == 0.5) {
 				spielfeld[1][1] = computer;
 				posComputer = new int[] { 1, 1 };
-			} else if (isPlayerTurn) {
-				if ((spielfeld[0][0] == player && spielfeld[2][1] == player)
-						|| (spielfeld[2][1] == player && spielfeld[0][2] == player)
-						|| (spielfeld[0][0] == player && spielfeld[1][2] == player)
-						|| (spielfeld[1][0] == player && spielfeld[0][2] == player)
-						|| (spielfeld[2][0] == player && spielfeld[0][1] == player)
-						|| (spielfeld[0][1] == player && spielfeld[2][2] == player)
-						|| (spielfeld[2][0] == player && spielfeld[1][2] == player)
-						|| (spielfeld[1][0] == player && spielfeld[2][2] == player)) {
+			}
+		} else if (playerTurn == 1.5) {
+			if ((spielfeld[0][0] == player && spielfeld[2][1] == player)
+					|| (spielfeld[2][1] == player && spielfeld[0][2] == player)
+					|| (spielfeld[0][0] == player && spielfeld[1][2] == player)
+					|| (spielfeld[1][0] == player && spielfeld[0][2] == player)
+					|| (spielfeld[2][0] == player && spielfeld[0][1] == player)
+					|| (spielfeld[0][1] == player && spielfeld[2][2] == player)
+					|| (spielfeld[2][0] == player && spielfeld[1][2] == player)
+					|| (spielfeld[1][0] == player && spielfeld[2][2] == player)) {
 
-					if (spielfeld[2][0] == player) {
+				if (spielfeld[2][0] == player) {
+					if (spielfeld[2][2] != computer) {
 						spielfeld[2][2] = computer;
 						posComputer = new int[] { 2, 2 };
-					}
-
-					else {
-						spielfeld[2][0] = computer;
-						posComputer = new int[] { 2, 0 };
 					}
 				}
 
 				else {
+					if (spielfeld[2][0] != computer) {
+						spielfeld[2][0] = computer;
+						posComputer = new int[] { 2, 0 };
+					}
+				}
+			}
+
+			else {
+				if (spielfeld[2][1] != computer) {
 					spielfeld[2][1] = computer;
 					posComputer = new int[] { 2, 1 };
 				}
 			}
 		}
+
 		return posComputer;
 	}
 
 	private int[] playerSetztNormal() {
 		if (spielfeld[0][1] == player || spielfeld[1][2] == player || spielfeld[1][0] == player
 				|| spielfeld[2][1] == player) {
-			if (!isPlayerTurn) {
+			if (playerTurn == 0.5) {
 
 				if (spielfeld[0][1] == player) {
 					spielfeld[2][1] = computer;
@@ -248,32 +327,40 @@ public class ComputerGameLogicController {
 				|| (spielfeld[1][0] == computer && spielfeld[2][0] == computer)
 				|| (spielfeld[1][1] == computer && spielfeld[2][2] == computer)) {
 
-			spielfeld[0][0] = computer;
-			posComputer = new int[] { 0, 0 };
+			if (spielfeld[0][0] != player) {
+				spielfeld[0][0] = computer;
+				posComputer = new int[] { 0, 0 };
+			}
 		}
 
 		if ((spielfeld[0][0] == computer && spielfeld[0][1] == computer)
 				|| (spielfeld[1][2] == computer && spielfeld[2][2] == computer)
 				|| (spielfeld[2][0] == computer && spielfeld[1][1] == computer)) {
 
-			spielfeld[0][2] = computer;
-			posComputer = new int[] { 0, 2 };
+			if (spielfeld[0][2] != player) {
+				spielfeld[0][2] = computer;
+				posComputer = new int[] { 0, 2 };
+			}
 		}
 
 		if ((spielfeld[2][1] == computer && spielfeld[2][2] == computer)
 				|| (spielfeld[0][0] == computer && spielfeld[1][0] == computer)
 				|| (spielfeld[1][1] == computer && spielfeld[0][2] == computer)) {
 
-			spielfeld[2][0] = computer;
-			posComputer = new int[] { 2, 0 };
+			if (spielfeld[2][0] != player) {
+				spielfeld[2][0] = computer;
+				posComputer = new int[] { 2, 0 };
+			}
 		}
 
 		if ((spielfeld[0][0] == computer && spielfeld[1][1] == computer)
 				|| (spielfeld[0][2] == computer && spielfeld[1][2] == computer)
 				|| (spielfeld[2][0] == computer && spielfeld[2][1] == computer)) {
 
-			spielfeld[2][2] = computer;
-			posComputer = new int[] { 2, 2 };
+			if (spielfeld[2][2] != player) {
+				spielfeld[2][2] = computer;
+				posComputer = new int[] { 2, 2 };
+			}
 		}
 
 		if ((spielfeld[0][1] == computer && spielfeld[2][1] == computer)
@@ -281,29 +368,54 @@ public class ComputerGameLogicController {
 				|| (spielfeld[0][0] == computer && spielfeld[2][2] == computer)
 				|| (spielfeld[2][0] == computer && spielfeld[0][2] == computer)) {
 
-			spielfeld[1][1] = computer;
-			posComputer = new int[] { 1, 1 };
+			if (spielfeld[1][1] != player) {
+				spielfeld[1][1] = computer;
+				posComputer = new int[] { 1, 1 };
+			}
 		}
 
 		if ((spielfeld[0][1] == computer && spielfeld[1][1] == computer)) {
-			spielfeld[2][1] = computer;
-			posComputer = new int[] { 2, 1 };
+			if (spielfeld[2][1] != player) {
+				spielfeld[2][1] = computer;
+				posComputer = new int[] { 2, 1 };
+			}
 		}
 
 		if ((spielfeld[1][1] == computer && spielfeld[2][1] == computer)) {
-			spielfeld[0][1] = computer;
-			posComputer = new int[] { 0, 1 };
+			if (spielfeld[0][1] != player) {
+				spielfeld[0][1] = computer;
+				posComputer = new int[] { 0, 1 };
+			}
 		}
 
 		if ((spielfeld[1][1] == computer && spielfeld[1][2] == computer)) {
-			spielfeld[1][0] = computer;
-			posComputer = new int[] { 1, 0 };
+			if (spielfeld[1][0] != player) {
+				spielfeld[1][0] = computer;
+				posComputer = new int[] { 1, 0 };
+			}
 		}
 
 		if ((spielfeld[1][0] == computer && spielfeld[1][1] == computer)) {
-			spielfeld[1][2] = computer;
-			posComputer = new int[] { 1, 2 };
+			if (spielfeld[1][2] != player) {
+				spielfeld[1][2] = computer;
+				posComputer = new int[] { 1, 2 };
+			}
 		}
+		return posComputer;
+	}
+
+	private int[] setRandom() {
+
+		for (int i = 0; i < spielfeld.length; i++) {
+			for (int j = 0; j < spielfeld.length; j++) {
+				if (spielfeld[i][j].equals("")) {
+					spielfeld[i][j] = computer;
+					posComputer = new int[] { i, j };
+				}
+
+			}
+		}
+
 		return posComputer;
 	}
 
@@ -342,11 +454,11 @@ public class ComputerGameLogicController {
 	}
 
 	public boolean checkDiagonalFromLeftToRightRow(String playerName) {
-			if (spielfeld[0][0] == playerName && spielfeld[1][1] == playerName && spielfeld[2][2] == playerName) {
-				return true;
-			} else {
-				return false;
-			}
+		if (spielfeld[0][0] == playerName && spielfeld[1][1] == playerName && spielfeld[2][2] == playerName) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean checkDiagonalFromRightToLeftRow(String playerName) {
