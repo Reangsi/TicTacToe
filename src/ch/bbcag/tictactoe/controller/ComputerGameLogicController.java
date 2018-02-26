@@ -342,7 +342,7 @@ public class ComputerGameLogicController {
 				spielfeld[2][0] = computer;
 				posComputer = new int[] { 2, 0 };
 			}
-		}x
+		}
 
 		if ((spielfeld[0][0] == computer && spielfeld[1][1] == computer)
 				|| (spielfeld[0][2] == computer && spielfeld[1][2] == computer)
