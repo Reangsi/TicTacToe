@@ -38,7 +38,7 @@ public class StartScreen extends JPanel {
 		headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		vsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 
-		logoLabel = new JLabel(ImageLoader.loadIcon("TicTacToe.PNG"));
+		logoLabel = new JLabel(ImageLoader.loadIcon("TicTacToe.png"));
 
 		einsGegenEinBtn = new JButton("1 vs 1");
 		einsGegenPc = new JButton("1 vs PC");
@@ -54,6 +54,7 @@ public class StartScreen extends JPanel {
 		einsGegenEinBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Setzt Gamemodus und öffnet nächstes Frame
 				setVisible(false);
 				NameEinsGegenEins eins = new NameEinsGegenEins(frame);
 				frame.switchJPanel(eins);
@@ -65,6 +66,7 @@ public class StartScreen extends JPanel {
 		einsGegenPc.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Setzt Gamemodus und öffnet nächstes Frame
 				setVisible(false);
 				NameEinsGegenPc pc = new NameEinsGegenPc(frame);
 				frame.switchJPanel(pc);

@@ -25,13 +25,14 @@ public class XorO extends JPanel {
 	private JLabel xLabel;
 	private JLabel oLabel;
 	private JLabel errorLabel;
-	// private JLabel anleitung;
+	
 	private JButton x1;
 	private JButton x2;
 	private JButton x3;
 	private JButton o1;
 	private JButton o2;
 	private JButton o3;
+	
 	private JButton[] xButton = { x1, x2, x3 };
 	private JButton[] oButton = { o1, o2, o3 };
 	private JButton startGame;
@@ -51,19 +52,18 @@ public class XorO extends JPanel {
 		oCenterPanel = new JPanel(new GridLayout(1, 3, 10, 10));
 		controllPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-		// TODO: Add Buttons to ArrayLists & Designs
-		x1 = new JButton(ImageLoader.loadIcon("adidas.PNG"));
-		x2 = new JButton(ImageLoader.loadIcon("cingcang.PNG"));
-		x3 = new JButton(ImageLoader.loadIcon("x.PNG"));
-		o1 = new JButton(ImageLoader.loadIcon("nike.PNG"));
-		o2 = new JButton(ImageLoader.loadIcon("yingyang.PNG"));
-		o3 = new JButton(ImageLoader.loadIcon("o.PNG"));
+		//Images
+		x1 = new JButton(ImageLoader.loadIcon("adidas.png"));
+		x2 = new JButton(ImageLoader.loadIcon("cingcang.png"));
+		x3 = new JButton(ImageLoader.loadIcon("x.png"));
+		o1 = new JButton(ImageLoader.loadIcon("nike.png"));
+		o2 = new JButton(ImageLoader.loadIcon("yingyang.png"));
+		o3 = new JButton(ImageLoader.loadIcon("o.png"));
 
 		startGame = new JButton("Start Game");
 
 		xLabel = new JLabel("X (Spieler)");
 		oLabel = new JLabel("O (Computer)");
-		// anleitung = new JLabel("Wähle ein Design für das X und 0");
 
 		xPanel.setBackground(Color.LIGHT_GRAY);
 		oPanel.setBackground(Color.LIGHT_GRAY);
@@ -74,7 +74,7 @@ public class XorO extends JPanel {
 		
 		xPanel.add(xLabel);
 		oPanel.add(oLabel);
-		// xPanel.add(anleitung);
+
 		errorLabel = new JLabel("Bitte ein Design wählen");
 
 		controllPanel.add(errorLabel);
@@ -94,10 +94,10 @@ public class XorO extends JPanel {
 		add(oPanel);
 		add(oCenterPanel);
 
-		// TODO: Add ActionListener to Buttons in ArrayLists using a for each loop.
 		x1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Icon wählen
 				if (chosenX == null) {
 					x1.setBackground(Color.BLUE);
 					chosenX = x1;
@@ -112,6 +112,7 @@ public class XorO extends JPanel {
 		x2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Icon wählen
 				if (chosenX == null) {
 					x2.setBackground(Color.BLUE);
 					chosenX = x2;
@@ -126,6 +127,7 @@ public class XorO extends JPanel {
 		x3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Icon wählen
 				if (chosenX == null) {
 					x3.setBackground(Color.BLUE);
 					chosenX = x3;
@@ -140,6 +142,7 @@ public class XorO extends JPanel {
 		o1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Icon wählen
 				if (chosenO == null) {
 					o1.setBackground(Color.BLUE);
 					chosenO = o1;
@@ -154,6 +157,7 @@ public class XorO extends JPanel {
 		o2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Icon wählen
 				if (chosenO == null) {
 					o2.setBackground(Color.BLUE);
 					chosenO = o2;
@@ -168,6 +172,7 @@ public class XorO extends JPanel {
 		o3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Icon wählen
 				if (chosenO == null) {
 					o3.setBackground(Color.BLUE);
 					chosenO = o3;
@@ -182,6 +187,7 @@ public class XorO extends JPanel {
 		startGame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Icon wählen
 				if (chosenO != null && chosenO != null) {
 					setVisible(false);
 					GridButtons grid = new GridButtons(frame, chosenX.getIcon(), chosenO.getIcon());

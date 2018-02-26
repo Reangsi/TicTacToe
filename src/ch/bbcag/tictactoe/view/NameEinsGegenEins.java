@@ -60,6 +60,7 @@ public class NameEinsGegenEins extends JPanel {
 		okey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Schaut ob etwas im Eingabefeld eingegeben wurde und gibt Eingabe weiter
 				if (!name.getText().trim().isEmpty() && !name1.getText().trim().isEmpty()) {
 					setVisible(false);
 					GAME_CONTROLLER.setPlayer(name.getText());

@@ -51,6 +51,7 @@ public class NameEinsGegenPc extends JPanel {
 		okey.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Schaut ob etwas im Eingabefeld eingegeben wurde und gibt Eingabe weiter
 				if (!name.getText().trim().isEmpty()) {
 					setVisible(false);
 					GAME_CONTROLLER.setPlayer(name.getText());
@@ -60,7 +61,6 @@ public class NameEinsGegenPc extends JPanel {
 					System.out.println("Ok Button pressed");
 				} else {
 					nameErrorMessage(frame);
-					//TODO: Diplay Warning!
 				}
 				
 			}
