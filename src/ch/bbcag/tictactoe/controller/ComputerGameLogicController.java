@@ -480,10 +480,8 @@ public class ComputerGameLogicController {
 
 				checkDiagonalFromRightToLeftRow(playerName) == true
 				|| checkDiagonalFromLeftToRightRow(playerName) == true) {
-			clear();
 			return "gewonnen";
 		} else if (checkEmptyFilds() == true) {
-			clear();
 			return "gleichstandOderVerloren";
 		}
 		return "";
@@ -521,24 +519,20 @@ public class ComputerGameLogicController {
 	}
 
 	public void setPlayerMove(int i, int j) {
-		// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: "
-		// + spielfeld[i][j]);
+
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer();
 			switchPlayerTurn();
-			// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER:
-			// " + spielfeld[i][j]);
+
 		}
 	}
 
 	public void setPlayerMove2(int i, int j) {
-		// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] VORHER: "
-		// + spielfeld[i][j]);
+
 		if (spielfeld[i][j].isEmpty()) {
 			spielfeld[i][j] = this.getPlayer2();
 			switchPlayerTurn();
-			// System.out.println("Spieler im Feld spielfeld[" + i + "][" + j + "] NACHHER:
-			// " + spielfeld[i][j]);
+
 		}
 	}
 
