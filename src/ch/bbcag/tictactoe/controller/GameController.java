@@ -64,8 +64,11 @@ public class GameController {
 			if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
 //				insertDataInDB(getPlayer(), "gewonnen", "computer", "");
 				return "gewonnen";
-			} else {
+			} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren") && computerObject.checkForWin("computer").equals("gleichstandOderVerloren")) {
 //				insertDataInDB(getPlayer(), "verloren", "computer", "");
+				return "gleichstand";
+			} else if (computerObject.checkForWin("computer").equals("gleichstandOderVerloren")) {
+				return "verloren";
 			}
 			return "spieler";
 
