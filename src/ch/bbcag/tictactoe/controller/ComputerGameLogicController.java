@@ -8,7 +8,7 @@ public class ComputerGameLogicController {
 	private double playerTurn;
 
 	private boolean isPlayerTurn = true;
-	int[] posComputer = null;
+	private int[] posComputer = null;
 
 	public ComputerGameLogicController(GameController gameControllerObjekt) {
 		for (int x = 0; x < 3; x++) {
@@ -19,41 +19,30 @@ public class ComputerGameLogicController {
 	}
 
 	public int[] computerPlayMove() {
-		int[] posComputer = null;
-
 		findOutPlayerTurn();
-		while (posComputer == null) {
+		posComputer = null;
 
-			checkForTwoInARow();
-			if (posComputer == null) {
+		posComputer = checkForTwoInARow();
 
-				posComputer = playerSetztNormal();
+		if (posComputer == null) {
 
-				if (posComputer == null) {
-
-					posComputer = playerSetztEcke();
-					// System.out.println(posComputer);
-					if (posComputer == null) {
-
-						posComputer = playerSetztMitte();
-
-						if (posComputer == null) {
-
-							posComputer = tryToWin();
-							if (posComputer == null) {
-
-								posComputer = setRandom();
-								if (posComputer == null) {
-									System.err.println("Gibt nichts zurück!");
-								}
-							}
-						}
-					}
-				}
-			}
+			posComputer = playerSetztNormal();
 		}
-		switchPlayerTurn();
+		if (posComputer == null) {
 
+			posComputer = playerSetztEcke();
+		}
+		if (posComputer == null) {
+			posComputer = playerSetztMitte();
+		}
+		if (posComputer == null) {
+			posComputer = tryToWin();
+		}
+		if (posComputer == null) {
+			posComputer = setRandom();
+		}
+
+		switchPlayerTurn();
 		return posComputer;
 	}
 
@@ -81,7 +70,7 @@ public class ComputerGameLogicController {
 		playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) / NUMBER_OF_PLAYERS + 0.5;
 	}
 
-	private void switchPlayerTurn() {
+	public void switchPlayerTurn() {
 		// //TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
 		// final int NUMBER_OF_FIELDS = 9;
 		// final int NUMBER_OF_PLAYERS = 2;
@@ -177,8 +166,10 @@ public class ComputerGameLogicController {
 		}
 
 		if ((spielfeld[1][0] == player && spielfeld[1][1] == player)) {
-			spielfeld[1][2] = computer;
-			posComputer = new int[] { 1, 2 };
+			if (spielfeld[1][2] != computer) {
+				spielfeld[1][2] = computer;
+				posComputer = new int[] { 1, 2 };
+			}
 		}
 
 		if ((spielfeld[0][0] == player && spielfeld[0][2] == player)) {
@@ -194,28 +185,28 @@ public class ComputerGameLogicController {
 				posComputer = new int[] { 2, 2 };
 			}
 		}
-		
+
 		if ((spielfeld[0][0] == player && spielfeld[2][0] == player)) {
 			if (spielfeld[1][0] != computer) {
 				spielfeld[1][0] = computer;
 				posComputer = new int[] { 1, 0 };
 			}
 		}
-		
+
 		if ((spielfeld[0][2] == player && spielfeld[2][2] == player)) {
 			if (spielfeld[1][2] != computer) {
 				spielfeld[1][2] = computer;
 				posComputer = new int[] { 1, 2 };
 			}
 		}
-		
+
 		if ((spielfeld[2][0] == player && spielfeld[2][2] == player)) {
 			if (spielfeld[2][1] != computer) {
 				spielfeld[2][1] = computer;
 				posComputer = new int[] { 2, 1 };
 			}
 		}
-		
+
 		return posComputer;
 	}
 
@@ -401,6 +392,34 @@ public class ComputerGameLogicController {
 				posComputer = new int[] { 1, 2 };
 			}
 		}
+
+		if ((spielfeld[0][0] == computer && spielfeld[0][2] == computer)) {
+			if (spielfeld[0][1] != player) {
+				spielfeld[0][1] = computer;
+				posComputer = new int[] { 0, 1 };
+			}
+		}
+
+		if ((spielfeld[0][2] == computer && spielfeld[2][2] == computer)) {
+			if (spielfeld[1][2] != player) {
+				spielfeld[1][2] = computer;
+				posComputer = new int[] { 1, 2 };
+			}
+		}
+
+		if ((spielfeld[2][2] == computer && spielfeld[2][0] == computer)) {
+			if (spielfeld[2][1] != player) {
+				spielfeld[2][1] = computer;
+				posComputer = new int[] { 2, 1 };
+			}
+		}
+
+		if ((spielfeld[0][0] == computer && spielfeld[2][0] == computer)) {
+			if (spielfeld[1][0] != player) {
+				spielfeld[1][0] = computer;
+				posComputer = new int[] { 1, 0 };
+			}
+		}
 		return posComputer;
 	}
 
@@ -410,13 +429,11 @@ public class ComputerGameLogicController {
 			for (int j = 0; j < spielfeld.length; j++) {
 				if (spielfeld[i][j].equals("")) {
 					spielfeld[i][j] = computer;
-					posComputer = new int[] { i, j };
+					return new int[] { i, j };
 				}
-
 			}
 		}
-
-		return posComputer;
+		return null;
 	}
 
 	public void setPlayer(String player) {
