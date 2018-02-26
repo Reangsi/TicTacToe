@@ -26,11 +26,11 @@ public class ComputerGameLogicController {
 
 		if (posComputer == null) {
 
-			posComputer = playerSetztNormal();
+			posComputer = playerSetztEcke();
 		}
 		if (posComputer == null) {
 
-			posComputer = playerSetztEcke();
+			posComputer = playerSetztNormal();
 		}
 		if (posComputer == null) {
 			posComputer = playerSetztMitte();
@@ -90,7 +90,6 @@ public class ComputerGameLogicController {
 	}
 
 	private int[] checkForTwoInARow() {
-
 		if ((spielfeld[0][1] == player && spielfeld[0][2] == player)
 				|| (spielfeld[1][0] == player && spielfeld[2][0] == player)
 				|| (spielfeld[1][1] == player && spielfeld[2][2] == player)) {
@@ -248,6 +247,11 @@ public class ComputerGameLogicController {
 				posComputer = new int[] { 1, 1 };
 			}
 		} else if (playerTurn == 1.5) {
+			if ((spielfeld[0][0] == player && spielfeld[2][2] == player && spielfeld[1][1] == computer) || (spielfeld[0][2] == player && spielfeld[2][0] == player && spielfeld[1][1] == computer)) {
+				if (spielfeld[2][1] !=computer) {
+					spielfeld[2][1] =computer;
+				}
+			}
 			if ((spielfeld[0][0] == player && spielfeld[2][1] == player)
 					|| (spielfeld[2][1] == player && spielfeld[0][2] == player)
 					|| (spielfeld[0][0] == player && spielfeld[1][2] == player)
