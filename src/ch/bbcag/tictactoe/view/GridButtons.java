@@ -32,8 +32,9 @@ public class GridButtons extends JPanel implements TimedLabels {
 	private JPanel northPanel;
 	private JPanel gamePanel;
 	private JLabel timerLabel;
-
+	// Übernimmt das gewählte Icon
 	public GridButtons(TicTacToeView frame, Icon iconX, Icon iconO) {
+		
 		setLayout(new GridLayout(2, 1));
 		frame.setSize(500, 500);
 		frame.setVisible(true);
@@ -46,7 +47,8 @@ public class GridButtons extends JPanel implements TimedLabels {
 		Timer timer = new Timer(this);
 		timer.setDaemon(true);
 		timer.start();
-
+		
+		// Erzeugt Buttons mit dem Array Coordinaten
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
 				JButton b = new JButton();
@@ -56,8 +58,10 @@ public class GridButtons extends JPanel implements TimedLabels {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						String[] buttonCoordinates = b.getName().split(";");
+						//Informiert logik wo geklickt wurde
 						String currentMove = GAME_CONTROLLER.setField(new Integer(buttonCoordinates[0]),
 								new Integer(buttonCoordinates[1]), getTimerLabel());
+						//Schaut falls jemand Geowonnen oder Verloren hat
 						if (currentMove.equals("gewonnen")) {
 							timer.stopTimer();
 							setVisible(false);
@@ -83,12 +87,13 @@ public class GridButtons extends JPanel implements TimedLabels {
 							setVisible(false);
 							WINorLOSE wORl = new WINorLOSE(frame, "verloren", GAME_CONTROLLER.getPlayer2());
 							frame.switchJPanel(wORl);		
-							
+						//Für den Player gegen PC Spielmodus	
 						} else if (GameModus.PLAYER_VS_COMPUTER.equals(GAME_CONTROLLER.getGameModus())) {
 							int[] computerMove = new int[0];
 							String computerMoveButton = new String();
 							if (currentMove == null) {
 								nameErrorMessage(frame);
+							//Schaut falls jemand Geowonnen oder Verloren hat
 							} else if (currentMove.equals("spieler")) {
 								b.setIcon(iconX);
 								b.setEnabled(false);
@@ -109,11 +114,12 @@ public class GridButtons extends JPanel implements TimedLabels {
 								WINorLOSE wORl = new WINorLOSE(frame, "gleichstand", "");
 								frame.switchJPanel(wORl);
 							}
-							
+							//Übersetzt die Computer gesetzte Arrays in den Buttonnamen
 							if (computerMove.length == 2) {
 								computerMoveButton = Integer.valueOf(computerMove[0]) + ";"
 										+ Integer.valueOf(computerMove[1]);
 							}
+							//PC setzt auf GUI Icon
 							for (JButton button : buttonList) {
 								if (button.getName().equals(computerMoveButton)) {
 									button.setIcon(iconO);
@@ -122,6 +128,7 @@ public class GridButtons extends JPanel implements TimedLabels {
 									break;
 								}
 							}
+						//Spieler gegen Spieler
 						} else {
 							if (GAME_CONTROLLER.isPlayerTurn()) {
 								b.setIcon(iconX);

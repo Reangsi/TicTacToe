@@ -42,6 +42,7 @@ public class WINorLOSE extends JPanel {
 			winLabel = new JLabel(player + "hat VERLOREN");
 		} else if (resultat.equals("gleichstand")) {
 			winLabel = new JLabel("GLEICHSTAND");
+		//Das 2 ist für den 2.Spieler
 		} else if (resultat.equals("gewonnen2")) {
 			winLabel = new JLabel(player + "hat GEWONNEN");
 		} else if (resultat.equals("verloren2")) {
@@ -58,6 +59,7 @@ public class WINorLOSE extends JPanel {
 		restart.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Zeigt wieder Startscreen an aber daten wurden noch nicht resetet
 				setVisible(false);
 				StartScreen start = new StartScreen(frame);
 				frame.switchJPanel(start);
