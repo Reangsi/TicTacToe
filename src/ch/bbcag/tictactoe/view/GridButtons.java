@@ -83,8 +83,10 @@ public class GridButtons extends JPanel implements TimedLabels {
 						} else {
 							if (GAME_CONTROLLER.isPlayerTurn()) {
 								b.setIcon(iconX);
+								b.setEnabled(false);
 							} else {
 								b.setIcon(iconO);
+								b.setEnabled(false);
 							}
 						}
 
