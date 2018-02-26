@@ -24,7 +24,6 @@ public class WINorLOSE extends JPanel {
 	private JButton restart;
 	private JLabel winLabel;
 
-
 	public WINorLOSE (TicTacToeView frame, String resultat, String player) {
 		
 		setLayout(new BorderLayout());
