@@ -54,7 +54,6 @@ public class ComputerGameLogicController {
 	 */
 
 	private void findOutPlayerTurn() {
-		// TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
 		final int NUMBER_OF_FIELDS = 9;
 		final int NUMBER_OF_PLAYERS = 2;
 		int numberOfEmptyFields = 0;
@@ -71,20 +70,6 @@ public class ComputerGameLogicController {
 	}
 
 	public void switchPlayerTurn() {
-		// //TODO: Fix Bug: Output muss für Spieler und Computer je gleich sein!
-		// final int NUMBER_OF_FIELDS = 9;
-		// final int NUMBER_OF_PLAYERS = 2;
-		// int numberOfEmptyFields = 0;
-		//
-		// for (int i = 0; i < spielfeld.length; i++) {
-		// for (int j = 0; j < spielfeld.length; j++) {
-		// if (spielfeld[i][j].equals("")) {
-		// numberOfEmptyFields++;
-		// }
-		// }
-		// }
-		//
-		// playerTurn = (NUMBER_OF_FIELDS - numberOfEmptyFields) % NUMBER_OF_PLAYERS;
 		isPlayerTurn = !isPlayerTurn;
 
 	}
