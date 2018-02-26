@@ -1,6 +1,5 @@
 package ch.bbcag.tictactoe.controller;
 
-import ch.bbcag.tictactoe.TicTacToeView;
 import ch.bbcag.tictactoe.database.SpielDao;
 import ch.bbcag.tictactoe.database.SpielJdbcDao;
 import ch.bbcag.tictactoe.helper.GameModus;
@@ -55,17 +54,18 @@ public class GameController {
 	}
 
 	public String setField(int i, int j, String timer) {
-		
+
 		System.out.println("Aktueller Playerturn: " + computerObject.isPlayerTurn());
 
 		if (computerObject.isPlayerTurn() && GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
 
 			computerObject.setPlayerMove(i, j);
 			if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
-//				insertDataInDB(getPlayer(), "gewonnen", "computer", "");
+				insertDataInDB(getPlayer(), "gewonnen", "computer", timer);
 				return "gewonnen";
-			} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren") && computerObject.checkForWin("computer").equals("gleichstandOderVerloren")) {
-//				insertDataInDB(getPlayer(), "verloren", "computer", "");
+			} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
+					&& computerObject.checkForWin("computer").equals("gleichstandOderVerloren")) {
+				insertDataInDB(getPlayer(), "gleichstand", "computer", timer);
 				return "gleichstand";
 			} else if (computerObject.checkForWin("computer").equals("gewonnen")) {
 				return "verloren";
@@ -76,45 +76,44 @@ public class GameController {
 			if (computerObject.isPlayerTurn()) {
 				computerObject.setPlayerMove(i, j);
 				if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
-//					insertDataInDB(getPlayer(), "gewonnen", getPlayer2(), timer);
+					insertDataInDB(getPlayer(), "gewonnen", getPlayer2(), timer);
 					System.out.println(getPlayer() + " gewonnen");
 					return "gewonnen";
-					
+
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
-//					insertDataInDB(getPlayer(), "gleichstand", getPlayer2(), timer);
+					insertDataInDB(getPlayer(), "gleichstand", getPlayer2(), timer);
 					System.out.println("gleichstand");
 					return "gleichstand";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
-						&& computerObject.checkForWin(getPlayer2()).equals("gewonnen")){
-//					insertDataInDB(getPlayer(), "verloren", getPlayer2(), timer);
+						&& computerObject.checkForWin(getPlayer2()).equals("gewonnen")) {
+					insertDataInDB(getPlayer(), "verloren", getPlayer2(), timer);
 					System.out.println(getPlayer() + " verloren");
 					return "verloren";
 				} else if (computerObject.checkForWin(getPlayer()).equals("")) {
-					
+
 				}
-				
+
 			} else if (computerObject.isPlayerTurn() == false) {
 				computerObject.setPlayerMove2(i, j);
 				if (computerObject.checkForWin(getPlayer2()).equals("gewonnen")) {
-//					insertDataInDB(getPlayer2(), "gewonnen", getPlayer(), timer);
+					insertDataInDB(getPlayer2(), "gewonnen", getPlayer(), timer);
 					System.out.println(getPlayer2() + " gewonnen");
 					return "gewonnen2";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
-//					insertDataInDB(getPlayer2(), "gleichstand", getPlayer(), timer);
+					insertDataInDB(getPlayer2(), "gleichstand", getPlayer(), timer);
 					System.out.println("gleichstand");
 					return "gleichstand";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gewonnen")
-						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")){
-//					insertDataInDB(getPlayer2(), "verloren", getPlayer(), timer);
+						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
+					insertDataInDB(getPlayer2(), "verloren", getPlayer(), timer);
 					System.out.println(getPlayer2() + " verloren");
 					return "verloren2";
 				} else if (computerObject.checkForWin(getPlayer()).equals("")) {
-					
+
 				}
 
-				
 			}
 		} else if (computerObject.isPlayerTurn() == false && GameModus.PLAYER_VS_COMPUTER.equals(gameModus)) {
 			System.err.println("Du bist nicht am Zug!");
@@ -130,7 +129,7 @@ public class GameController {
 		return computerObject.computerPlayMove();
 	}
 
-	private void insertDataInDB(String spielerName1, String ergebnisEingabe, String computer, String zeit) {
+	public void insertDataInDB(String spielerName1, String ergebnisEingabe, String computer, String zeit) {
 		Spiel spiel = new Spiel();
 		Ergebnis ergebnis = new Ergebnis();
 		ergebnis.setErgebnis(ergebnisEingabe);
@@ -141,10 +140,12 @@ public class GameController {
 		spieler2.setName(computer);
 		spiel.setSpieler_1(spieler1);
 		spiel.setSpieler_2(spieler2);
+		if (zeit != null) {
+			zeit = zeit.substring(zeit.indexOf(":") + 1);
+			zeit = zeit.trim();
+		}
 		spiel.setZeit(zeit);
 		spielDao.insertSpiel(spiel);
 	}
 
-
 }
-
