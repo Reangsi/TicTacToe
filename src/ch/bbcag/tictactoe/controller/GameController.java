@@ -63,6 +63,7 @@ public class GameController {
 			computerObject.setPlayerMove(i, j);
 			if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
 //				insertDataInDB(getPlayer(), "gewonnen", "computer", "");
+				return "gewonnen";
 			} else {
 //				insertDataInDB(getPlayer(), "verloren", "computer", "");
 			}
@@ -74,15 +75,18 @@ public class GameController {
 				if (computerObject.checkForWin(getPlayer()).equals("gewonnen")) {
 //					insertDataInDB(getPlayer(), "gewonnen", getPlayer2(), timer);
 					System.out.println(getPlayer() + " gewonnen");
+					return "gewonnen";
 					
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
 //					insertDataInDB(getPlayer(), "gleichstand", getPlayer2(), timer);
 					System.out.println("gleichstand");
+					return "gleichstand";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gewonnen")){
 //					insertDataInDB(getPlayer(), "verloren", getPlayer2(), timer);
 					System.out.println(getPlayer() + " verloren");
+					return "verloren";
 				} else if (computerObject.checkForWin(getPlayer()).equals("")) {
 					
 				}
@@ -92,14 +96,17 @@ public class GameController {
 				if (computerObject.checkForWin(getPlayer2()).equals("gewonnen")) {
 //					insertDataInDB(getPlayer2(), "gewonnen", getPlayer(), timer);
 					System.out.println(getPlayer2() + " gewonnen");
+					return "gewonnen";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gleichstandOderVerloren")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")) {
 //					insertDataInDB(getPlayer2(), "gleichstand", getPlayer(), timer);
 					System.out.println("gleichstand");
+					return "gleichstand";
 				} else if (computerObject.checkForWin(getPlayer()).equals("gewonnen")
 						&& computerObject.checkForWin(getPlayer2()).equals("gleichstandOderVerloren")){
 //					insertDataInDB(getPlayer2(), "verloren", getPlayer(), timer);
 					System.out.println(getPlayer2() + " verloren");
+					return "verloren";
 				} else if (computerObject.checkForWin(getPlayer()).equals("")) {
 					
 				}

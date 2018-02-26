@@ -58,6 +58,22 @@ public class GridButtons extends JPanel implements TimedLabels {
 						String[] buttonCoordinates = b.getName().split(";");
 						String currentMove = GAME_CONTROLLER.setField(new Integer(buttonCoordinates[0]),
 								new Integer(buttonCoordinates[1]), getTimerLabel());
+						if (currentMove.equals("gewonnen")) {
+							timer.stopTimer();
+							setVisible(false);
+							WINorLOSE wORl = new WINorLOSE(frame, "gewonnen");
+							frame.switchJPanel(wORl);
+						} else if (currentMove.equals("verloren")) {
+							timer.stopTimer();
+							setVisible(false);
+							WINorLOSE wORl = new WINorLOSE(frame, "verloren");
+							frame.switchJPanel(wORl);
+						} else if (currentMove.equals("gleichstand")) {
+							timer.stopTimer();
+							setVisible(false);
+							WINorLOSE wORl = new WINorLOSE(frame, "gleichstand");
+							frame.switchJPanel(wORl);
+						}
 						if (GameModus.PLAYER_VS_COMPUTER.equals(GAME_CONTROLLER.getGameModus())) {
 							int[] computerMove = new int[0];
 							String computerMoveButton = new String();
@@ -90,17 +106,10 @@ public class GridButtons extends JPanel implements TimedLabels {
 							}
 						}
 
-						// if (b.getName().equals(GAME_CONTROLLER.getXy()) == true) {
-						// } else {
-						// System.err.println("Findet button nicht!");
-						// }
-
 					}
 				});
 				gamePanel.add(b);
 				buttonList.add(b);
-
-				// b.doClick();
 			}
 
 		}
@@ -113,19 +122,11 @@ public class GridButtons extends JPanel implements TimedLabels {
 		add(northPanel, BorderLayout.NORTH);
 		add(gamePanel, BorderLayout.CENTER);
 
-		/*
-		 * private JButton x1; private JButton x2; private JButton x3; private JButton
-		 * o1; private JButton o2; private JButton o3;
-		 */
 
 	}
 
 	private void nameErrorMessage(TicTacToeView parentPanel) {
 		JOptionPane.showMessageDialog(parentPanel, "Du bist nicht am Zug!", "Error", JOptionPane.WARNING_MESSAGE);
-	}
-
-	public void setButtonIcon(int posX, int posY) {
-		// TODO: Set Icon of button to player OR computer.
 	}
 
 	public void updateTime(String[] time) {

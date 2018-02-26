@@ -25,7 +25,7 @@ public class WINorLOSE extends JPanel {
 	private JPanel winPanel;
 	private JPanel southPanel;
 
-	public WINorLOSE (TicTacToeView frame) {
+	public WINorLOSE (TicTacToeView frame, String resultat) {
 		
 		frame.setSize(500, 500);
 		frame.setVisible(true);
