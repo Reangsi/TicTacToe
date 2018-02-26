@@ -65,7 +65,7 @@ public class GridButtons extends JPanel implements TimedLabels {
 								nameErrorMessage(frame);
 							} else if (currentMove.equals("spieler")) {
 								b.setIcon(iconX);
-								// b.setEnabled(false);
+								b.setEnabled(false);
 								computerMove = GAME_CONTROLLER.doComputerMove();
 							}
 							if (computerMove.length == 2) {
@@ -75,7 +75,7 @@ public class GridButtons extends JPanel implements TimedLabels {
 							for (JButton button : buttonList) {
 								if (button.getName().equals(computerMoveButton)) {
 									button.setIcon(iconO);
-									// button.setEnabled(false);
+									button.setEnabled(false);
 									button.revalidate();
 									break;
 								}
