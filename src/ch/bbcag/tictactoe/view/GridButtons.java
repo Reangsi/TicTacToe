@@ -82,8 +82,7 @@ public class GridButtons extends JPanel implements TimedLabels {
 							timer.stopTimer();
 							setVisible(false);
 							WINorLOSE wORl = new WINorLOSE(frame, "verloren", GAME_CONTROLLER.getPlayer2());
-							frame.switchJPanel(wORl);	
-							
+							frame.switchJPanel(wORl);		
 							
 						} else if (GameModus.PLAYER_VS_COMPUTER.equals(GAME_CONTROLLER.getGameModus())) {
 							int[] computerMove = new int[0];
