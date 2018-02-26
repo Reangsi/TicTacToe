@@ -38,7 +38,7 @@ public class StartScreen extends JPanel {
 		headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 		vsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 50));
 
-		logoLabel = new JLabel(ImageLoader.loadIcon("TicTacToe.PNG"));
+		logoLabel = new JLabel(ImageLoader.loadIcon("TicTacToe.png"));
 
 		einsGegenEinBtn = new JButton("1 vs 1");
 		einsGegenPc = new JButton("1 vs PC");
